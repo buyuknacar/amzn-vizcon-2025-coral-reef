@@ -1,36 +1,12 @@
 import streamlit as st
-import pandas as pd
 import plotly.express as px
-
-# Load data
-@st.cache_data
-def load_data():
-    bleaching_df = pd.read_csv("data/coral_bleaching.csv")
-    bleaching_df.columns = bleaching_df.columns.str.strip().str.lower().str.replace(" ", "_")
-    return bleaching_df
+from utils.data_processing import load_bleaching_data, filter_bleaching_data
 
 st.title("🐠 Coral Reef Bleaching and Recovery Visualization")
 
-# Load data
-bleaching_df = load_data()
-
-# Convert to numeric first
-bleaching_df['date_year'] = pd.to_numeric(bleaching_df['date_year'], errors='coerce')
-bleaching_df['percent_bleaching'] = pd.to_numeric(bleaching_df['percent_bleaching'], errors='coerce')
-
-# Filter data
-bleaching_filtered = bleaching_df[
-    (bleaching_df['date_year'].notnull()) & 
-    (bleaching_df['date_year'] >= 2000) & 
-    (bleaching_df['date_year'] <= 2019) &
-    (bleaching_df['latitude_degrees'].notnull()) & 
-    (bleaching_df['longitude_degrees'].notnull()) & 
-    (bleaching_df['country_name'].notnull()) &
-    (bleaching_df['percent_bleaching'].notnull())
-].copy()
-
-bleaching_filtered['date_year'] = bleaching_filtered['date_year'].astype(int)
-bleaching_filtered = bleaching_filtered.sort_values(by='date_year')
+# Load and filter data
+bleaching_df = load_bleaching_data()
+bleaching_filtered = filter_bleaching_data(bleaching_df)
 
 # Create heatmap
 fig = px.density_mapbox(
