@@ -18,32 +18,32 @@ st.markdown("\n")
 # Intro
 with st.container():
     st.markdown("""
-    ## 🌊 The Crisis Beneath the Waves
+    ## The Crisis Beneath the Waves
     
     When trying to understand the topic of sustainability, the impact that humans have on the environment is an extremely broad and significant area of discussion. But, there is **no better example** of human impact on the environment than the negative impacts humans have had on coral reefs around the world.
     
     Coral reefs are some of the most biologically diverse and productive ecosystems—home to a wide array of symbiotic species that create some of the most beautiful living architecture on Earth.
     """)
     
-    st.info("💡 **Did you know?** An estimated 25% of all marine life, including over 4,000 species of fish, are dependent on coral reefs at some point in their life cycle. - *U.S. Environmental Protection Agency*")
+    st.info("An estimated **25% of all marine life**, including over 4,000 species of fish, are dependent on coral reefs at some point in their life cycle. **- *U.S. Environmental Protection Agency***")
     
     st.markdown("""
-    ### 🔥 The Bleaching Crisis
+    ### The Bleaching Crisis
     
     However, coral reefs around the world have been significantly affected by the rise of global temperatures, changes in the climate, and general pollution of the environment and our oceans—undergoing a transformation known as **coral bleaching**.
     
     Coral bleaching occurs when corals become stressed by changes in their environment, most commonly:
-    - 🌡️ **Elevated sea temperatures**
-    - ☀️ **Increased UV radiation**
-    - 🏭 **Poor water quality and pollution**
+    -  **Elevated sea temperatures**
+    -  **Increased UV radiation**
+    -  **Poor water quality and pollution**
     
     During bleaching, corals become transparent—revealing their white skeletons. While bleached corals are still alive, they are significantly weakened and more vulnerable to starvation, disease, and even death.
     """)
     
-    st.warning("⚠️ **The Ripple Effect**: When reefs die, fish populations decline, marine food webs collapse, coastal communities lose tourism income, and natural storm protection weakens.")
+    st.warning(" **The Ripple Effect**: When reefs die, fish populations decline, marine food webs collapse, coastal communities lose tourism income, and natural storm protection weakens.")
     
     st.markdown("""
-    ### 🇦🇺 The Great Barrier Reef: A Global Crisis Symbol
+    ### The Great Barrier Reef: A Global Crisis Symbol
     
     The Great Barrier Reef has become the global poster child for this crisis. As the world's largest reef system, its recent history of severe bleaching events has shocked scientists and sparked worldwide concern about the future of coral ecosystems.
     
@@ -52,10 +52,10 @@ with st.container():
     
     col1, col2 = st.columns([1, 3])
     with col1:
-        st.metric("📅 1998", "First Event", "<5% mortality")
-        st.metric("📅 2002", "Wide Event", ">50% affected")
-        st.metric("📅 2006", "Localized", "98% bleached")
-        st.metric("📅 2016-17", "B2B", "2/3 affected")
+        st.metric("1998", "First Event", "<5% mortality")
+        st.metric("2002", "Wide Event", ">50% affected")
+        st.metric("2006", "Localized", "98% bleached")
+        st.metric("2016-17", "B2B", "2/3 affected")
     
     with col2:
         st.markdown("""
@@ -69,7 +69,7 @@ with st.container():
         - **2025**: Sixth mass bleaching since 2016, first time both Australian World Heritage reefs bleached simultaneously
         """)
     
-    st.error("🚨 **Critical Alert**: 6 mass bleaching events in just 8 years (2016-2025) - an unprecedented frequency that gives reefs little time to recover.")
+    st.error("**6 mass bleaching events** in just 8 years (2016-2025) - an unprecedented frequency that gives reefs little time to recover.")
 
 st.divider()
 
@@ -88,7 +88,7 @@ with st.container():
     col1, col2 = st.columns(2)
     
     with col1:
-        st.subheader("🔥 Coral Bleaching Dataset")
+        st.subheader("Coral Bleaching Dataset")
         st.markdown("""
         **Focus**: Bleaching events and environmental stressors
         
@@ -102,7 +102,7 @@ with st.container():
         """)
         
     with col2:
-        st.subheader("🌱 Coral Recovery Dataset")
+        st.subheader("Coral Recovery Dataset")
         st.markdown("""
         **Focus**: Recovery patterns following disturbances
         
@@ -120,6 +120,7 @@ with st.container():
     st.markdown("""
     **Data Sources**: 
     - [Coral Recovery Database](https://www.bco-dmo.org/dataset/933334)
+                
     - [Coral Bleaching Database](https://www.bco-dmo.org/dataset/773466)
     """)
 
