@@ -1,59 +1,19 @@
+# Library Imports
 import streamlit as st
 import plotly.express as p
+from utils.styling import apply_styling
 
-palette = {
-    "salmon": "#ffa07a",
-    "deep_blue": "#003f5c",
-    "coral_red": "#ff6f61",
-    "turquoise": "#2f9e99",
-    "off_white": "#fdfdfd"
-}
-
-st.markdown(f"""
-<style>
-/* 1. Gradient salmon background */
-.stApp {{
-    background: linear-gradient(160deg, {palette['salmon']} 0%, #ff8566 100%);
-}}
-
-/* 2. Body text */
-.stMarkdown p, .stMarkdown li {{
-    color: {palette['deep_blue']} !important;
-}}
-
-/* 2. Header hierarchy */
-h1, h2 {{
-    color: {palette['deep_blue']} !important;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.25);
-    letter-spacing: 0.5px;
-}}
-h3, h4 {{
-    color: {palette['off_white']} !important;
-    font-weight: 600;
-}}
-h5, h6 {{
-    color: {palette['coral_red']} !important;
-    font-weight: 500;
-}}
-
-/* 3. Links & buttons */
-a, .stButton button {{
-    background-color: {palette['deep_blue']} !important;
-    color: {palette['off_white']} !important;
-    border-radius: 8px;
-    padding: 6px 12px;
-    border: none;
-}}
-a:hover, .stButton button:hover {{
-    background-color: {palette['turquoise']} !important;
-    color: #ffffff !important;
-}}
-</style>
-""", unsafe_allow_html=True)
+# Apply styling
+apply_styling()
 
 
 # TITLE
 st.title("🐠 Coral Reef History")
+
+st.markdown("\n")
+
+st.image("utils/salmon-teal-coral-reef.png")
+st.markdown("\n")
 
 # Intro
 with st.container():
@@ -93,9 +53,9 @@ with st.container():
     col1, col2 = st.columns([1, 3])
     with col1:
         st.metric("📅 1998", "First Event", "<5% mortality")
-        st.metric("📅 2002", "Widespread", ">50% affected")
+        st.metric("📅 2002", "Wide Event", ">50% affected")
         st.metric("📅 2006", "Localized", "98% bleached")
-        st.metric("📅 2016-17", "Back-to-back", "2/3 affected")
+        st.metric("📅 2016-17", "B2B", "2/3 affected")
     
     with col2:
         st.markdown("""
