@@ -1,23 +1,56 @@
 import streamlit as st
 import plotly.express as p
 
-# Color Palette
 palette = {
     "salmon": "#ffa07a",
-    "turquoise": "#2f9e99",
     "deep_blue": "#003f5c",
-    "yellow": "#ffd166"
+    "coral_red": "#ff6f61",
+    "turquoise": "#2f9e99",
+    "off_white": "#fdfdfd"
 }
 
-
-# Background Color
 st.markdown(f"""
 <style>
+/* 1. Gradient salmon background */
 .stApp {{
-    background-color: {palette['salmon']};
+    background: linear-gradient(160deg, {palette['salmon']} 0%, #ff8566 100%);
+}}
+
+/* 2. Body text */
+.stMarkdown p, .stMarkdown li {{
+    color: {palette['deep_blue']} !important;
+}}
+
+/* 2. Header hierarchy */
+h1, h2 {{
+    color: {palette['deep_blue']} !important;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.25);
+    letter-spacing: 0.5px;
+}}
+h3, h4 {{
+    color: {palette['off_white']} !important;
+    font-weight: 600;
+}}
+h5, h6 {{
+    color: {palette['coral_red']} !important;
+    font-weight: 500;
+}}
+
+/* 3. Links & buttons */
+a, .stButton button {{
+    background-color: {palette['deep_blue']} !important;
+    color: {palette['off_white']} !important;
+    border-radius: 8px;
+    padding: 6px 12px;
+    border: none;
+}}
+a:hover, .stButton button:hover {{
+    background-color: {palette['turquoise']} !important;
+    color: #ffffff !important;
 }}
 </style>
 """, unsafe_allow_html=True)
+
 
 # TITLE
 st.title("🐠 Coral Reef History")
