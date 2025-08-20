@@ -97,6 +97,7 @@ def create_recovery_heatmap():
     fig.update_layout(coloraxis_colorbar=dict(title="Percent Hard Coral Cover"))
     return fig
 
+# Visualization 3 - KMeans Analysis
 def create_kmeans_analysis():
     """Create K-means analysis visualizations"""
     dfC = load_clustered_data()
@@ -157,5 +158,198 @@ def create_kmeans_analysis():
     )
     
     return fig1, fig2, fig3, fig4
+
+# Visualization 4 - Coral Bleaching and Environmental Correlation
+def create_bleaching_dashboard():
+    """Create comprehensive coral bleaching analysis dashboard"""
+    df = load_bleaching_data()
+    
+    # Clean data
+    df['date_year'] = pd.to_datetime(df['date']).dt.year
+    numeric_cols = ['percent_bleaching', 'temperature_maximum', 'windspeed', 'turbidity']
+    for col in numeric_cols:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors='coerce')
+    df = df.dropna(subset=['percent_bleaching'])
+    
+    countries = sorted(df['country_name'].unique())
+    
+    fig = make_subplots(
+        rows=6, cols=1,
+        subplot_titles=(
+            'Mean Bleaching Percentage Over Years',
+            'Bleaching by Exposure Level',
+            'Top 15 Countries by Bleaching Severity',
+            'Mean Sea Temperature Over Years',
+            'Mean Water Turbidity Over Years',
+            'Mean Wind Speed Over Years'
+        ),
+        specs=[
+            [{"type": "scatter"}],
+            [{"type": "bar"}],
+            [{"type": "bar"}],
+            [{"type": "scatter"}],
+            [{"type": "scatter"}],
+            [{"type": "scatter"}]
+        ],
+        vertical_spacing=0.06
+    )
+    
+    # Global data traces
+    global_bleaching = df.groupby('date_year')['percent_bleaching'].mean().reset_index()
+    fig.add_trace(
+        go.Scatter(
+            x=global_bleaching['date_year'],
+            y=global_bleaching['percent_bleaching'],
+            mode='lines+markers',
+            name='Global Average',
+            line=dict(color='#2E5077'),
+            visible=True
+        ),
+        row=1, col=1
+    )
+    
+    global_exposure = df.groupby('exposure')['percent_bleaching'].mean().reset_index()
+    fig.add_trace(
+        go.Bar(
+            x=global_exposure['exposure'],
+            y=global_exposure['percent_bleaching'],
+            name='Global Exposure',
+            marker_color='#2E5077',
+            visible=True
+        ),
+        row=2, col=1
+    )
+    
+    # Top 15 countries
+    country_bleaching = (df.groupby('country_name')['percent_bleaching']
+                        .agg(['mean', 'count'])
+                        .reset_index()
+                        .sort_values('mean', ascending=False))
+    top_15 = country_bleaching[country_bleaching['count'] >= 100].head(15)
+    
+    fig.add_trace(
+        go.Bar(
+            x=top_15['country_name'],
+            y=top_15['mean'],
+            name='Top 15 Countries',
+            marker_color='#2F4F4F',
+            visible=True
+        ),
+        row=3, col=1
+    )
+    
+    # Global environmental factors
+    global_temp = df.groupby('date_year')['temperature_maximum'].mean().reset_index()
+    fig.add_trace(
+        go.Scatter(
+            x=global_temp['date_year'],
+            y=global_temp['temperature_maximum'],
+            name='Global Temperature',
+            line=dict(color='#8B0000'),
+            visible=True
+        ),
+        row=4, col=1
+    )
+    
+    global_turb = df.groupby('date_year')['turbidity'].mean().reset_index()
+    fig.add_trace(
+        go.Scatter(
+            x=global_turb['date_year'],
+            y=global_turb['turbidity'],
+            name='Global Turbidity',
+            line=dict(color='#00008B'),
+            visible=True
+        ),
+        row=5, col=1
+    )
+    
+    global_wind = df.groupby('date_year')['windspeed'].mean().reset_index()
+    fig.add_trace(
+        go.Scatter(
+            x=global_wind['date_year'],
+            y=global_wind['windspeed'],
+            name='Global Wind Speed',
+            line=dict(color='#006400'),
+            visible=True
+        ),
+        row=6, col=1
+    )
+    
+    # Country-specific traces (initially hidden)
+    for country in countries[:20]:  # Limit to first 20 countries for performance
+        country_data = df[df['country_name'] == country]
+        
+        yearly_bleaching = country_data.groupby('date_year')['percent_bleaching'].mean().reset_index()
+        fig.add_trace(
+            go.Scatter(
+                x=yearly_bleaching['date_year'],
+                y=yearly_bleaching['percent_bleaching'],
+                mode='lines+markers',
+                name=f'{country} Bleaching',
+                line=dict(color='#2E5077'),
+                visible=False
+            ),
+            row=1, col=1
+        )
+        
+        exposure_data = country_data.groupby('exposure')['percent_bleaching'].mean().reset_index()
+        fig.add_trace(
+            go.Bar(
+                x=exposure_data['exposure'],
+                y=exposure_data['percent_bleaching'],
+                name=f'{country} Exposure',
+                marker_color='#2E5077',
+                visible=False
+            ),
+            row=2, col=1
+        )
+    
+    # Create dropdown for country selection
+    buttons = [dict(
+        args=[{"visible": [True] * 6 + [False] * (len(fig.data) - 6)}],
+        label="Global View",
+        method="update"
+    )]
+    
+    for i, country in enumerate(countries[:20]):
+        visibility = [True] * 6 + [False] * (len(fig.data) - 6)
+        visibility[6 + i * 2] = True  # Show country bleaching
+        visibility[6 + i * 2 + 1] = True  # Show country exposure
+        
+        buttons.append(dict(
+            args=[{"visible": visibility}],
+            label=country,
+            method="update"
+        ))
+    
+    fig.update_layout(
+        height=2800,
+        title_text="Coral Bleaching Analysis Dashboard",
+        showlegend=True,
+        updatemenus=[dict(
+            buttons=buttons,
+            direction="down",
+            showactive=True,
+            x=0.1,
+            y=1.1
+        )]
+    )
+    
+    # Update axes labels
+    fig.update_xaxes(title_text="Year", row=1, col=1)
+    fig.update_yaxes(title_text="Bleaching %", row=1, col=1)
+    fig.update_xaxes(title_text="Exposure Level", row=2, col=1)
+    fig.update_yaxes(title_text="Bleaching %", row=2, col=1)
+    fig.update_xaxes(title_text="Country", row=3, col=1, tickangle=45)
+    fig.update_yaxes(title_text="Bleaching %", row=3, col=1)
+    fig.update_xaxes(title_text="Year", row=4, col=1)
+    fig.update_yaxes(title_text="Temperature (K)", row=4, col=1)
+    fig.update_xaxes(title_text="Year", row=5, col=1)
+    fig.update_yaxes(title_text="Turbidity", row=5, col=1)
+    fig.update_xaxes(title_text="Year", row=6, col=1)
+    fig.update_yaxes(title_text="Wind Speed (m/s)", row=6, col=1)
+    
+    return fig
 
 

@@ -2,7 +2,7 @@
 import streamlit as st
 import plotly.express as p
 from utils.styling import apply_styling
-from utils.data_processing import create_bleaching_heatmap, create_recovery_heatmap, create_kmeans_analysis
+from utils.data_processing import create_bleaching_heatmap, create_recovery_heatmap, create_kmeans_analysis, create_bleaching_dashboard
 
 # Apply styling
 apply_styling()
@@ -186,11 +186,23 @@ with st.container():
 
 # Viz 4
 with st.container():
-    st.markdown("## Viz 4 - Coral Exposure and Temperature Comparison")
+    st.markdown("## Viz 4 - Coral Bleaching and Environmental Correlation")
     
-    ### Viz Code
+    viz4_placeholder = st.empty()
+    with viz4_placeholder.container():
+        with st.spinner("Loading environmental correlation dashboard..."):
+            fig = create_bleaching_dashboard()
+            st.plotly_chart(fig, use_container_width=True)
     
-    ### Visualization Write Up
+    st.markdown("""
+    This comprehensive dashboard analyzes the relationship between coral bleaching and environmental factors:
+    - **Bleaching trends** over time globally and by country
+    - **Exposure levels** impact on bleaching severity
+    - **Top 15 countries** most affected by bleaching
+    - **Environmental correlations** with temperature, turbidity, and wind speed
+    """)
+    
+    st.info("💡 **Insight**: Use the dropdown to switch between global view and individual country analysis to identify regional patterns.")
 
 # Viz 5
 with st.container():
