@@ -55,5 +55,24 @@ def apply_styling():
     .stImage img {{
         border-radius: 15px;
     }}
+    
+    /* 5. Rounded chart corners */
+    .js-plotly-plot .plotly .modebar {{
+        display: none !important;
+    }}
+    .js-plotly-plot .plotly {{
+        border-radius: 12px;
+        overflow: hidden;
+    }}
+    .stPlotlyChart > div {{
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }}
+    .matplotlib-container {{
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }}
     </style>
     """, unsafe_allow_html=True)
