@@ -168,11 +168,12 @@ with st.container():
     viz3_placeholder = st.empty()
     with viz3_placeholder.container():
         with st.spinner("Loading K-means analysis..."):
-            fig1, fig2, fig3 = create_kmeans_analysis()
+            fig1, fig2, fig3, fig4 = create_kmeans_analysis()
             
             st.plotly_chart(fig1, use_container_width=True)
             st.plotly_chart(fig2, use_container_width=True)
             st.plotly_chart(fig3, use_container_width=True)
+            st.plotly_chart(fig4, use_container_width=True)
     
     st.markdown("""
     This K-means clustering analysis reveals distinct patterns in coral reef characteristics:

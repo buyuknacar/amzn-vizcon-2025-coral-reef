@@ -28,7 +28,6 @@ def load_elbow_results():
 
 
 # Visualization 1 - Coral Bleaching Over The Years
-
 def create_bleaching_heatmap():
     """Create coral bleaching intensity heatmap visualization"""
     bleaching_df = load_bleaching_data()
@@ -63,6 +62,7 @@ def create_bleaching_heatmap():
     fig.update_layout(coloraxis_colorbar=dict(title="Percent Bleaching"))
     return fig
 
+# Visualization 2 - Coral Recovery Over the Years
 def create_recovery_heatmap():
     """Create coral recovery intensity heatmap visualization"""
     recovery_df = load_recovery_data()
@@ -135,6 +135,27 @@ def create_kmeans_analysis():
         height=400
     )
     
-    return fig1, fig2, fig3
+    # Donut chart for factor influence
+    features = ['Geographic Location', 'Macroalgal Competition', 'Temperature Factors', 
+               'Depth', 'Other Environmental Factors']
+    sizes = [27.5, 27, 20, 17, 7]
+    colors = ['#FF9999', '#66B2FF', '#99FF99', '#FFCC99', '#FF99CC']
+    
+    fig4 = go.Figure(data=[go.Pie(
+        labels=features,
+        values=sizes,
+        hole=0.7,
+        marker_colors=colors,
+        textinfo='label+percent',
+        textposition='outside'
+    )])
+    
+    fig4.update_layout(
+        title="Influence of Different Factors on Coral Recovery",
+        height=500,
+        showlegend=True
+    )
+    
+    return fig1, fig2, fig3, fig4
 
 
