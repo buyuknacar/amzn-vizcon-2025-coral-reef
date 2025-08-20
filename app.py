@@ -2,7 +2,7 @@
 import streamlit as st
 import plotly.express as p
 from utils.styling import apply_styling
-from utils.data_processing import create_bleaching_heatmap, create_recovery_heatmap
+from utils.data_processing import create_bleaching_heatmap, create_recovery_heatmap, create_kmeans_analysis
 
 # Apply styling
 apply_styling()
@@ -165,9 +165,23 @@ with st.container():
 with st.container():
     st.markdown("## Viz 3 - K Means Analysis")
     
-    ### Viz Code
+    viz3_placeholder = st.empty()
+    with viz3_placeholder.container():
+        with st.spinner("Loading K-means analysis..."):
+            fig1, fig2, fig3 = create_kmeans_analysis()
+            
+            st.plotly_chart(fig1, use_container_width=True)
+            st.plotly_chart(fig2, use_container_width=True)
+            st.plotly_chart(fig3, use_container_width=True)
     
-    ### Visualization Write Up
+    st.markdown("""
+    This K-means clustering analysis reveals distinct patterns in coral reef characteristics:
+    - **Geographic clusters** show regional similarities in coral conditions
+    - **Correlation matrix** identifies relationships between environmental factors
+    - **Elbow method** determines the optimal number of clusters for analysis
+    """)
+    
+    st.info("💡 **Insight**: Different colored clusters represent coral sites with similar environmental characteristics and bleaching patterns.")
 
 # Viz 4
 with st.container():
