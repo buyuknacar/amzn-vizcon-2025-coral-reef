@@ -2,6 +2,7 @@
 import streamlit as st
 import plotly.express as p
 from utils.styling import apply_styling
+from utils.data_processing import create_bleaching_heatmap
 
 # Apply styling
 apply_styling()
@@ -130,9 +131,19 @@ st.divider()
 with st.container():
     st.markdown("## Viz 1 - Coral Bleaching Over The Years")
     
-    ### Viz Code
-    
-    ### Visualization Write Up
+    if st.button("Load Bleaching Heatmap", key="viz1"):
+        with st.spinner("Loading visualization..."):
+            fig = create_bleaching_heatmap()
+            st.plotly_chart(fig, use_container_width=True)
+        
+        st.markdown("""
+        This interactive heatmap reveals the global distribution and intensity of coral bleaching events from 2000-2019. 
+        The animation shows how bleaching patterns evolved over time, with warmer colors indicating higher bleaching percentages.
+        """)
+        
+        st.info("💡 **Insight**: Use the play button to see temporal patterns, or drag the slider to explore specific years.")
+    else:
+        st.info("Click the button above to load the interactive bleaching heatmap visualization.")
 
 # Viz 2
 with st.container():
