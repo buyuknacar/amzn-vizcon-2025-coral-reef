@@ -2,7 +2,7 @@
 import streamlit as st
 import plotly.express as p
 from utils.styling import apply_styling
-from utils.data_processing import create_bleaching_heatmap, create_recovery_heatmap, create_kmeans_analysis, create_bleaching_dashboard
+from utils.data_processing import create_bleaching_heatmap, create_recovery_heatmap, create_kmeans_analysis, create_bleaching_dashboard, create_management_analysis, create_gbr_forecast
 
 # Apply styling
 apply_styling()
@@ -206,11 +206,42 @@ with st.container():
 
 # Viz 5
 with st.container():
-    st.markdown("## Viz 5 - Ryan's Forecast")
+    st.markdown("## Viz 5 - Management Authority Effectiveness")
     
-    ### Viz Code
+    viz5_placeholder = st.empty()
+    with viz5_placeholder.container():
+        with st.spinner("Loading management analysis..."):
+            fig = create_management_analysis()
+            st.plotly_chart(fig, use_container_width=True)
     
-    ### Visualization Write Up
+    st.markdown("""
+    This analysis evaluates the effectiveness of different management authorities in coral recovery:
+    - **Horizontal bar chart** shows mean coral recovery percentages by management authority
+    - **Color gradient** indicates recovery performance (darker green = better recovery)
+    - **Sample counts** displayed on bars show data reliability
+    """)
+    
+    st.info("💡 **Insight**: Compare management approaches to identify which authorities achieve the highest coral recovery rates.")
+
+# Viz 6
+with st.container():
+    st.markdown("## Viz 6 - Great Barrier Reef Forecast")
+    
+    viz6_placeholder = st.empty()
+    with viz6_placeholder.container():
+        with st.spinner("Loading GBR forecast..."):
+            fig = create_gbr_forecast()
+            st.plotly_chart(fig, use_container_width=True)
+    
+    st.markdown("""
+    This time series analysis shows the Great Barrier Reef's coral cover trajectory:
+    - **Historical data** (blue) shows observed coral cover percentages over time
+    - **Forecast data** (red) projects future coral cover for the next 10 years
+    - **Confidence interval** (shaded area) indicates forecast uncertainty range
+    """)
+    
+    st.info("💡 **Insight**: The forecast helps predict future coral health trends and informs conservation planning decisions.")
 
 
 
+# Viz 6

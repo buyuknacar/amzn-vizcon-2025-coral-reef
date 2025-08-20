@@ -4,6 +4,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import streamlit as st
+import matplotlib.pyplot as plt
 
 @st.cache_data
 def load_bleaching_data():
@@ -24,6 +25,14 @@ def load_correlation_matrix():
 @st.cache_data
 def load_elbow_results():
     return pd.read_csv("data/elbow_results.csv", low_memory=False)
+
+@st.cache_data
+def load_gbr_historical():
+    return pd.read_csv("data/gbr_historical.csv", low_memory=False)
+
+@st.cache_data
+def load_gbr_forecast():
+    return pd.read_csv("data/gbr_forecast.csv", low_memory=False)
 
 
 
@@ -349,6 +358,119 @@ def create_bleaching_dashboard():
     fig.update_yaxes(title_text="Turbidity", row=5, col=1)
     fig.update_xaxes(title_text="Year", row=6, col=1)
     fig.update_yaxes(title_text="Wind Speed (m/s)", row=6, col=1)
+    
+    return fig
+
+
+# Visualization 5 - Management Authorities
+def create_management_analysis():
+    """Create management authorities coral recovery analysis"""
+    recovery_df = load_recovery_data()
+    
+    # Filter recovery data excluding null, 'nd', and 'Not Reported'
+    recovery_mgmt = recovery_df[
+        (recovery_df['management_authority'].notnull()) &
+        (recovery_df['management_authority'] != 'nd') &
+        (recovery_df['management_authority'] != 'Not Reported') &
+        (recovery_df['percent_hard_coral_cover'].notnull())
+    ].copy()
+    
+    # Aggregate mean recovery percent and count per management authority
+    agg = recovery_mgmt.groupby('management_authority').agg(
+        mean_recovery=('percent_hard_coral_cover', 'mean'),
+        count=('percent_hard_coral_cover', 'size')
+    ).reset_index()
+    
+    # Keep only top 15 by count and sort by mean recovery ascending
+    agg_top = agg.sort_values('count', ascending=False).head(15)
+    agg_top = agg_top.sort_values('mean_recovery', ascending=True)
+    
+    fig = go.Figure(go.Bar(
+        y=agg_top['management_authority'],
+        x=agg_top['mean_recovery'],
+        orientation='h',
+        marker=dict(
+            color=agg_top['mean_recovery'],
+            colorscale='Greens',
+            showscale=True,
+            colorbar=dict(title="Mean Recovery %")
+        ),
+        text=agg_top['count'],
+        textposition='auto',
+        hovertemplate='<b>%{y}</b><br>Mean Recovery: %{x:.2f}%<br>Samples: %{text}<extra></extra>'
+    ))
+    
+    fig.update_layout(
+        title='Top 15 Management Authorities by Mean Coral Recovery %',
+        xaxis_title='Mean Percent Hard Coral Cover',
+        yaxis_title='Management Authority',
+        height=700,
+        margin=dict(l=200)
+    )
+    
+    return fig
+
+# Visualization 6 - GBR Forecast Analysis
+def create_gbr_forecast():
+    """Create Great Barrier Reef forecast visualization"""
+    hist_df = load_gbr_historical()
+    forecast_df = load_gbr_forecast()
+    
+    # Process historical data
+    hist_df["date_year"] = pd.to_datetime(hist_df["date_year"])
+    x_hist = hist_df["date_year"].dt.year.values
+    y_hist = hist_df["percent_hard_coral_cover"].values
+    
+    # Process forecast data
+    x_fore = forecast_df["year"].values
+    y_fore = forecast_df["forecast_percent_hard_coral_cover"].values
+    y_lo = forecast_df["lower_95"].values
+    y_hi = forecast_df["upper_95"].values
+    
+    fig = go.Figure()
+    
+    # Add historical data
+    fig.add_trace(go.Scatter(
+        x=x_hist,
+        y=y_hist,
+        mode='lines+markers',
+        name='Observed',
+        line=dict(color='#2E5077'),
+        marker=dict(size=6)
+    ))
+    
+    # Add forecast data
+    fig.add_trace(go.Scatter(
+        x=x_fore,
+        y=y_fore,
+        mode='lines+markers',
+        name='Forecast',
+        line=dict(color='#FF6B6B'),
+        marker=dict(size=6)
+    ))
+    
+    # Add confidence interval
+    fig.add_trace(go.Scatter(
+        x=np.concatenate([x_fore, x_fore[::-1]]),
+        y=np.concatenate([y_hi, y_lo[::-1]]),
+        fill='toself',
+        fillcolor='rgba(255, 107, 107, 0.2)',
+        line=dict(color='rgba(255,255,255,0)'),
+        name='95% Confidence Interval',
+        showlegend=True
+    ))
+    
+    fig.update_layout(
+        title='Average Hard Coral Cover in the Great Barrier Reef<br><sub>Observed & 10-Year Forecast</sub>',
+        xaxis_title='Year',
+        yaxis_title='Hard Coral Cover Percentage',
+        height=600,
+        showlegend=True,
+        hovermode='x unified'
+    )
+    
+    fig.update_xaxes(showgrid=True, gridwidth=1, gridcolor='lightgray')
+    fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor='lightgray')
     
     return fig
 
