@@ -93,7 +93,7 @@ def create_bleaching_heatmap():
         )],
         plot_bgcolor='#F5FBFF',
         paper_bgcolor='#F5FBFF',
-        font=dict(color='black')
+        font=dict(color='black', size=16)
     )
     return fig
 
@@ -112,15 +112,16 @@ def create_kmeans_analysis():
         hole=0.7,
         marker_colors=colors,
         textinfo='label+percent',
-        textposition='outside'
+        textposition='outside',
+        textfont=dict(size=16)
     )])
     
     fig.update_layout(
         height=500,
-        showlegend=True,
+        showlegend=False,
         plot_bgcolor='#F5FBFF',
         paper_bgcolor='#F5FBFF',
-        font=dict(color='black')
+        font=dict(color='black', size=14)
     )
     
     return fig
@@ -268,7 +269,7 @@ def create_bleaching_dashboard():
     
     fig.update_layout(
         height=2400,
-        showlegend=True,
+        showlegend=False,
         plot_bgcolor='#F5FBFF',
         paper_bgcolor='#F5FBFF',
         font=dict(color='black'),
@@ -297,16 +298,16 @@ def create_bleaching_dashboard():
     )
     
     # Update axes labels
-    fig.update_xaxes(title_text="Exposure Level", title_font_color="black", tickfont_color="black", row=1, col=1)
-    fig.update_yaxes(title_text="Bleaching %", title_font_color="black", tickfont_color="black", row=1, col=1)
-    fig.update_xaxes(title_text="Country", title_font_color="black", tickfont_color="black", row=2, col=1, tickangle=45)
-    fig.update_yaxes(title_text="Bleaching %", title_font_color="black", tickfont_color="black", row=2, col=1)
-    fig.update_xaxes(title_text="Year", title_font_color="black", tickfont_color="black", row=3, col=1)
-    fig.update_yaxes(title_text="Temperature (K)", title_font_color="black", tickfont_color="black", row=3, col=1)
-    fig.update_xaxes(title_text="Year", title_font_color="black", tickfont_color="black", row=4, col=1)
-    fig.update_yaxes(title_text="Turbidity", title_font_color="black", tickfont_color="black", row=4, col=1)
-    fig.update_xaxes(title_text="Year", title_font_color="black", tickfont_color="black", row=5, col=1)
-    fig.update_yaxes(title_text="Wind Speed (m/s)", title_font_color="black", tickfont_color="black", row=5, col=1)
+    fig.update_xaxes(title_text="Exposure Level", title_font=dict(size=16, color="black"), tickfont=dict(size=14, color="black"), row=1, col=1)
+    fig.update_yaxes(title_text="Bleaching %", title_font=dict(size=16, color="black"), tickfont=dict(size=14, color="black"), row=1, col=1)
+    fig.update_xaxes(title_text="Country", title_font=dict(size=16, color="black"), tickfont=dict(size=14, color="black"), row=2, col=1, tickangle=45)
+    fig.update_yaxes(title_text="Bleaching %", title_font=dict(size=16, color="black"), tickfont=dict(size=14, color="black"), row=2, col=1)
+    fig.update_xaxes(title_text="Year", title_font=dict(size=16, color="black"), tickfont=dict(size=14, color="black"), row=3, col=1)
+    fig.update_yaxes(title_text="Temperature (K)", title_font=dict(size=16, color="black"), tickfont=dict(size=14, color="black"), row=3, col=1)
+    fig.update_xaxes(title_text="Year", title_font=dict(size=16, color="black"), tickfont=dict(size=14, color="black"), row=4, col=1)
+    fig.update_yaxes(title_text="Turbidity", title_font=dict(size=16, color="black"), tickfont=dict(size=14, color="black"), row=4, col=1)
+    fig.update_xaxes(title_text="Year", title_font=dict(size=16, color="black"), tickfont=dict(size=14, color="black"), row=5, col=1)
+    fig.update_yaxes(title_text="Wind Speed (m/s)", title_font=dict(size=16, color="black"), tickfont=dict(size=14, color="black"), row=5, col=1)
     
     return fig
 
@@ -410,8 +411,8 @@ def create_management_analysis():
         font=dict(color='black')
     )
     
-    fig.update_xaxes(title_font_color='black', tickfont_color='black')
-    fig.update_yaxes(title_font_color='black', tickfont_color='black')
+    fig.update_xaxes(title_font=dict(size=16, color='black'), tickfont=dict(size=14, color='black'))
+    fig.update_yaxes(title_font=dict(size=16, color='black'), tickfont=dict(size=14, color='black'))
     
     return fig
 
@@ -486,15 +487,15 @@ def create_gbr_forecast():
         legend=dict(
             orientation="h",
             yanchor="bottom",
-            y=1.06,
+            y=1.02,
             xanchor="center",
             x=0.5,
-            font=dict(color='black')
+            font=dict(size=18)
         )
     )
     
-    fig.update_xaxes(showgrid=True, gridwidth=1, gridcolor='rgba(211, 211, 211, 0.5)', title_font_color='black', tickfont_color='black')
-    fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor='rgba(211, 211, 211, 0.5)', title_font_color='black', tickfont_color='black')
+    fig.update_xaxes(showgrid=True, gridwidth=1, gridcolor='rgba(211, 211, 211, 0.5)', title_font=dict(size=16, color='black'), tickfont=dict(size=14, color='black'))
+    fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor='rgba(211, 211, 211, 0.5)', title_font=dict(size=16, color='black'), tickfont=dict(size=14, color='black'))
     
     return fig
 
