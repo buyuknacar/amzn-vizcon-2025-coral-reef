@@ -23,9 +23,9 @@ st.subheader("A Bleaching and Recovery Analysis")
 
 st.markdown("\n")
 
-st.markdown('<div style="text-align: center;">', unsafe_allow_html=True)
-st.image("utils/salmon-teal-coral-reef.png")
-st.markdown('</div>', unsafe_allow_html=True)
+col1, col2, col3 = st.columns([1, 6, 1])
+with col2:
+    st.image("utils/salmon-teal-coral-reef.png", use_container_width=True)
 st.markdown("\n")
 
 # Intro
