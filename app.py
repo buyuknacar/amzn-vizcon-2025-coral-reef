@@ -2,7 +2,7 @@
 import streamlit as st
 import plotly.express as p
 from utils.styling import apply_styling
-from utils.data_processing import create_bleaching_heatmap, create_recovery_heatmap, create_kmeans_analysis, create_bleaching_dashboard, create_management_analysis, create_gbr_forecast
+from utils.data_processing import create_bleaching_heatmap, create_kmeans_analysis, create_bleaching_dashboard, create_management_analysis, create_gbr_forecast
 
 # Apply styling
 apply_styling()
@@ -129,7 +129,7 @@ st.divider()
 
 # Viz 1
 with st.container():
-    st.markdown("## Viz 1 - Coral Bleaching Over The Years")
+    st.markdown("## Coral Bleaching Over The Years")
     
     viz1_placeholder = st.empty()
     with viz1_placeholder.container():
@@ -146,24 +146,7 @@ with st.container():
 
 # Viz 2
 with st.container():
-    st.markdown("## Viz 2 - Coral Recovery Over The Years")
-    
-    viz2_placeholder = st.empty()
-    with viz2_placeholder.container():
-        with st.spinner("Loading recovery visualization..."):
-            fig = create_recovery_heatmap()
-            st.plotly_chart(fig, use_container_width=True)
-    
-    st.markdown("""
-    This interactive heatmap shows coral recovery patterns from 2000-2019, displaying percent hard coral cover across global reef sites. 
-    Green intensity indicates healthier coral coverage, revealing areas of successful recovery over time.
-    """)
-    
-    st.info("💡 **Insight**: Compare with the bleaching map to identify regions showing resilience and recovery patterns.")
-
-# Viz 3
-with st.container():
-    st.markdown("## Viz 3 - K Means Analysis")
+    st.markdown("## K Means Analysis")
     
     viz3_placeholder = st.empty()
     with viz3_placeholder.container():
@@ -184,9 +167,9 @@ with st.container():
     
     st.info("💡 **Insight**: Different colored clusters represent coral sites with similar environmental characteristics and bleaching patterns.")
 
-# Viz 4
+# Viz 3
 with st.container():
-    st.markdown("## Viz 4 - Coral Bleaching and Environmental Correlation")
+    st.markdown("## Coral Bleaching and Environmental Correlation")
     
     viz4_placeholder = st.empty()
     with viz4_placeholder.container():
@@ -204,9 +187,9 @@ with st.container():
     
     st.info("💡 **Insight**: Use the dropdown to switch between global view and individual country analysis to identify regional patterns.")
 
-# Viz 5
+# Viz 4
 with st.container():
-    st.markdown("## Viz 5 - Management Authority Effectiveness")
+    st.markdown("## Management Authority Effectiveness")
     
     viz5_placeholder = st.empty()
     with viz5_placeholder.container():
@@ -223,9 +206,9 @@ with st.container():
     
     st.info("💡 **Insight**: Compare management approaches to identify which authorities achieve the highest coral recovery rates.")
 
-# Viz 6
+# Viz 5
 with st.container():
-    st.markdown("## Viz 6 - Great Barrier Reef Forecast")
+    st.markdown("## Great Barrier Reef Forecast")
     
     viz6_placeholder = st.empty()
     with viz6_placeholder.container():
@@ -242,6 +225,3 @@ with st.container():
     
     st.info("💡 **Insight**: The forecast helps predict future coral health trends and informs conservation planning decisions.")
 
-
-
-# Viz 6

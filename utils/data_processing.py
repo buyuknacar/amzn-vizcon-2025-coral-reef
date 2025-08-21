@@ -71,42 +71,7 @@ def create_bleaching_heatmap():
     fig.update_layout(coloraxis_colorbar=dict(title="Percent Bleaching"))
     return fig
 
-# Visualization 2 - Coral Recovery Over the Years
-def create_recovery_heatmap():
-    """Create coral recovery intensity heatmap visualization"""
-    recovery_df = load_recovery_data()
-    recovery_filtered = recovery_df[
-        (recovery_df['date_year'].notnull()) & (recovery_df['date_year'] >= 2000) & 
-        (recovery_df['date_year'] <= 2019) & (recovery_df['latitude_degrees'].notnull()) & 
-        (recovery_df['longitude_degrees'].notnull()) & (recovery_df['country_name'].notnull()) &
-        (recovery_df['percent_hard_coral_cover'].notnull())
-    ].copy()
-    
-    recovery_filtered['date_year'] = recovery_filtered['date_year'].astype(int)
-    recovery_filtered = recovery_filtered.sort_values(by='date_year')
-    
-    fig = px.density_mapbox(
-        recovery_filtered,
-        lat='latitude_degrees',
-        lon='longitude_degrees',
-        z='percent_hard_coral_cover',
-        radius=20,
-        animation_frame='date_year',
-        color_continuous_scale='Greens',
-        range_color=[0, recovery_filtered['percent_hard_coral_cover'].max()],
-        mapbox_style='open-street-map',
-        center=dict(lat=0, lon=0),
-        zoom=0.4,
-        height=700,
-        title='Coral Recovery Intensity Heatmap',
-        hover_name='country_name',
-        hover_data={'percent_hard_coral_cover': True, 'date_year': True}
-    )
-    
-    fig.update_layout(coloraxis_colorbar=dict(title="Percent Hard Coral Cover"))
-    return fig
-
-# Visualization 3 - KMeans Analysis
+# Visualization 2 - KMeans Analysis
 def create_kmeans_analysis():
     """Create K-means analysis visualizations"""
     dfC = load_clustered_data()
@@ -168,7 +133,7 @@ def create_kmeans_analysis():
     
     return fig1, fig2, fig3, fig4
 
-# Visualization 4 - Coral Bleaching and Environmental Correlation
+# Visualization 3 - Coral Bleaching and Environmental Correlation
 def create_bleaching_dashboard():
     """Create comprehensive coral bleaching analysis dashboard"""
     df = load_bleaching_data()
@@ -362,7 +327,7 @@ def create_bleaching_dashboard():
     return fig
 
 
-# Visualization 5 - Management Authorities
+# Visualization 4 - Management Authorities
 def create_management_analysis():
     """Create management authorities coral recovery analysis"""
     recovery_df = load_recovery_data()
@@ -410,7 +375,7 @@ def create_management_analysis():
     
     return fig
 
-# Visualization 6 - GBR Forecast Analysis
+# Visualization 5 - GBR Forecast Analysis
 def create_gbr_forecast():
     """Create Great Barrier Reef forecast visualization"""
     hist_df = load_gbr_historical()
