@@ -41,13 +41,24 @@ def create_bleaching_heatmap():
     """Create coral bleaching intensity heatmap visualization"""
     bleaching_df = load_bleaching_data()
     bleaching_filtered = bleaching_df[
-        (bleaching_df['date_year'].notnull()) & (bleaching_df['date_year'] >= 2000) & 
-        (bleaching_df['date_year'] <= 2019) & (bleaching_df['latitude_degrees'].notnull()) & 
-        (bleaching_df['longitude_degrees'].notnull()) & (bleaching_df['country_name'].notnull()) &
-        (bleaching_df['percent_bleaching'].notnull())
+        (bleaching_df['date_year'].notnull()) & 
+        (bleaching_df['date_year'] >= 2000) & 
+        (bleaching_df['date_year'] <= 2019) &
+        (bleaching_df['latitude_degrees'].notnull()) & 
+        (bleaching_df['longitude_degrees'].notnull()) & 
+        (bleaching_df['country_name'].notnull())
     ].copy()
     
     bleaching_filtered['date_year'] = bleaching_filtered['date_year'].astype(int)
+    bleaching_filtered['country_name'] = bleaching_filtered['country_name'].replace('France', 'France (Overseas Territory)')
+    
+    # Make sure intensity column exists and clean
+    bleaching_filtered = bleaching_filtered[bleaching_filtered['percent_bleaching'].notnull()]
+    
+    # Create custom hover text
+    bleaching_filtered['hover_text'] = bleaching_filtered['country_name'] + ' (' + bleaching_filtered['date_year'].astype(str) + ')'
+    
+    # Sort by date_year ascending
     bleaching_filtered = bleaching_filtered.sort_values(by='date_year')
     
     fig = px.density_mapbox(
@@ -63,9 +74,15 @@ def create_bleaching_heatmap():
         center=dict(lat=0, lon=0),
         zoom=0.4,
         height=700,
-
-        hover_name='country_name',
-        hover_data={'percent_bleaching': True, 'date_year': True}
+        hover_name='hover_text',
+        hover_data={
+            'hover_text': False,
+            'country_name': False,
+            'date_year': False,
+            'percent_bleaching': False,
+            'latitude_degrees': False,
+            'longitude_degrees': False
+        }
     )
     
     fig.update_layout(coloraxis_colorbar=dict(title="Percent Bleaching"))
@@ -245,7 +262,7 @@ def create_bleaching_dashboard():
     # Create dropdown for country selection
     buttons = [dict(
         args=[{"visible": [True] * 6 + [False] * (len(fig.data) - 6)}],
-        label="Global View",
+        label="All Countries",
         method="update"
     )]
     
@@ -268,8 +285,23 @@ def create_bleaching_dashboard():
             buttons=buttons,
             direction="down",
             showactive=True,
-            x=0.1,
-            y=1.1
+            x=0.5,
+            y=1.02,
+            xanchor="center",
+            yanchor="top",
+            bgcolor="#2E5077",
+            bordercolor="#ffffff",
+            borderwidth=2,
+            font=dict(color="white", size=14)
+        )],
+        annotations=[dict(
+            text="<b>All Countries</b>",
+            x=0.5,
+            y=1.05,
+            xref="paper",
+            yref="paper",
+            showarrow=False,
+            font=dict(size=16, color="#2E5077", family="Arial Black")
         )]
     )
     
