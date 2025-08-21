@@ -457,7 +457,8 @@ def create_gbr_forecast():
         y=y_hi,
         mode='lines',
         line=dict(width=0),
-        showlegend=False
+        showlegend=False,
+        hovertemplate='<b>Upper 95% CI:</b> %{y:.2f}%<extra></extra>'
     ))
     
     # Add confidence interval lower bound with fill
@@ -468,7 +469,8 @@ def create_gbr_forecast():
         line=dict(width=0),
         fillcolor='rgba(79, 195, 247, 0.2)',
         fill='tonexty',
-        name='95% Confidence Interval'
+        name='95% Confidence Interval',
+        hovertemplate='<b>Lower 95% CI:</b> %{y:.2f}%<extra></extra>'
     ))
     
     fig.update_layout(
