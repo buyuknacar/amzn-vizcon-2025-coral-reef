@@ -34,9 +34,11 @@ st.markdown("\n")
 st.markdown("""
 ## The Fragile Rainforests of the Sea
 
-When trying to understand the topic of sustainability, the impact that humans have on the environment is an extremely broad and significant area of discussion. But, there is **no better example** of human impact on the environment than the negative impacts humans have had on coral reefs around the world.
+Coral reefs are often called the rainforests of the ocean. Though they cover less than 1% of the seafloor, they support nearly a quarter of all marine life, providing shelter and breeding grounds for countless species.
 
-Coral reefs are some of the most biologically diverse and productive ecosystems—home to a wide array of symbiotic species that create some of the most beautiful living architecture on Earth.
+They act as natural barriers, protecting coastlines from storms and erosion, and they sustain fisheries and food security for millions of people worldwide. Reefs also fuel local economies through tourism, diving, and recreation, while inspiring scientific discovery and cultural heritage.
+
+In short, coral reefs are a foundation of marine biodiversity, coastal protection, and human well-being — making them one of Earth’s most valuable ecosystems.
 
 """)
 
@@ -125,14 +127,14 @@ st.divider()
 # Viz 1
 st.markdown("## Coral Bleaching Over The Years")
 
+st.markdown("\n")
+
 with st.container():
     with st.spinner("Loading bleaching visualization..."):
         fig = create_bleaching_heatmap()
         st.plotly_chart(fig)
 
     st.markdown("""
-    Chart 1 – Global Heatmap of Coral Bleaching Over Time
-
     📊 **What it shows:**
     A timeline of bleaching events across global reef locations since 2000, highlighting peaks in mass bleaching years.
 
@@ -142,26 +144,12 @@ with st.container():
 
 st.divider()
 
-# Viz 2
-st.markdown("## K Means Analysis")
 
-with st.container():
-    with st.spinner("Loading K-means analysis..."):
-        fig = create_kmeans_analysis()
-        st.plotly_chart(fig)
-
-    st.markdown("""
-    📊 **What it shows:**
-    Four key factors driving coral recovery: geographic location, temperature patterns, macroalgal competition, and depth
-
-    🔎 **Meaning:**
-    Geographic location dominates recovery patterns, explaining why some reefs are more resilient. Depth offers refuge in deeper waters, while algal competition threatens weakened corals post-bleaching. These insights guide targeted conservation — protecting deeper areas, controlling algal growth, and maintaining water quality can significantly improve recovery success for the 25% of marine life dependent on reefs.
-    """)
-
-st.divider()
 
 # Viz 3
 st.markdown("## Coral Bleaching and Environmental Correlation")
+
+st.markdown("\n")
 
 with st.container():
     with st.spinner("Loading environmental correlation dashboard..."):
@@ -178,8 +166,30 @@ with st.container():
 
 st.divider()
 
+# Viz 2
+st.markdown("## Factors Driving Coral Recovery")
+
+st.markdown("\n")
+
+with st.container():
+    with st.spinner("Loading K-means analysis..."):
+        fig = create_kmeans_analysis()
+        st.plotly_chart(fig)
+
+    st.markdown("""
+    📊 **What it shows:**
+    Four key factors driving coral recovery: geographic location, temperature patterns, macroalgal competition, and depth
+
+    🔎 **Meaning:**
+    Geographic location dominates recovery patterns, explaining why some reefs are more resilient. Depth offers refuge in deeper waters, while algal competition threatens weakened corals post-bleaching. These insights guide targeted conservation — protecting deeper areas, controlling algal growth, and maintaining water quality can significantly improve recovery success for the 25% of marine life dependent on reefs.
+    """)
+
+st.divider()
+
 # Viz 4
 st.markdown("## Management Authority Effectiveness")
+
+st.markdown("\n")
 
 with st.container():
     with st.spinner("Loading management analysis..."):
@@ -196,6 +206,8 @@ st.divider()
 
 # Viz 5
 st.markdown("## Great Barrier Reef Forecast")
+
+st.markdown("\n")
 
 with st.container():
     with st.spinner("Loading GBR forecast..."):
@@ -217,8 +229,17 @@ As we analyze the patterns of recovery and decline in places like the Great Barr
 
 While reefs have shown the ability to recover in the past, the combination of rising temperatures, pollution in the oceans, and more frequent extreme weather events is testing their ability to survive. Analyzing this data isn't just about documenting decline, it's about finding ways to protect and preserve these ecosystems for future generations.
 
+🛡️ **How Can We Protect Coral Reefs?**
+
+- **Tackle Climate Change** – Reduce carbon emissions to limit ocean warming and acidification.
+- **Marine Protected Areas (MPAs)** – Establish and enforce zones where reefs are safe from overfishing and destructive practices.
+- **Sustainable Fishing** – Use reef-friendly practices that protect breeding grounds and maintain balance in marine life.
+- **Reduce Pollution** – Limit agricultural runoff, plastics, and chemicals that stress coral ecosystems.
+- **Reef Restoration** – Support coral nurseries and transplantation projects that help damaged reefs regrow.
+- **Community & Tourism Practices** – Encourage reef-safe tourism (no touching corals, reef-safe sunscreens, waste management).
+- **Education & Awareness** – Empower local communities and global citizens to understand and protect reef ecosystems.
             
-### A reef without color is a warning, not an ending.
+### A reef without color is a warning, not an ending!
             
 """)
 
