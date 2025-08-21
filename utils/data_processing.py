@@ -155,7 +155,8 @@ def create_bleaching_dashboard():
             y=global_exposure['percent_bleaching'],
             name='Global Exposure',
             marker_color='#2E5077',
-            visible=True
+            visible=True,
+            hovertemplate='<b>Exposure Level:</b> %{x}<br><b>Bleaching Percentage:</b> %{y:.2f}%<extra></extra>'
         ),
         row=1, col=1
     )
@@ -173,7 +174,8 @@ def create_bleaching_dashboard():
             y=top_15['mean'],
             name='Top 15 Countries',
             marker_color='#2F4F4F',
-            visible=True
+            visible=True,
+            hovertemplate='<b>Country:</b> %{x}<br><b>Mean Bleaching:</b> %{y:.2f}%<extra></extra>'
         ),
         row=2, col=1
     )
@@ -186,7 +188,8 @@ def create_bleaching_dashboard():
             y=global_temp['temperature_maximum'],
             name='Global Temperature',
             line=dict(color='#8B0000'),
-            visible=True
+            visible=True,
+            hovertemplate='<b>Year:</b> %{x}<br><b>Temperature:</b> %{y:.2f}K<extra></extra>'
         ),
         row=3, col=1
     )
@@ -198,7 +201,8 @@ def create_bleaching_dashboard():
             y=global_turb['turbidity'],
             name='Global Turbidity',
             line=dict(color='#00008B'),
-            visible=True
+            visible=True,
+            hovertemplate='<b>Year:</b> %{x}<br><b>Turbidity:</b> %{y:.2f}<extra></extra>'
         ),
         row=4, col=1
     )
@@ -210,7 +214,8 @@ def create_bleaching_dashboard():
             y=global_wind['windspeed'],
             name='Global Wind Speed',
             line=dict(color='#006400'),
-            visible=True
+            visible=True,
+            hovertemplate='<b>Year:</b> %{x}<br><b>Wind Speed:</b> %{y:.2f} m/s<extra></extra>'
         ),
         row=5, col=1
     )
@@ -226,7 +231,8 @@ def create_bleaching_dashboard():
                 y=exposure_data['percent_bleaching'],
                 name=f'{country} Exposure',
                 marker_color='#2E5077',
-                visible=False
+                visible=False,
+                hovertemplate=f'<b>Country:</b> {country}<br><b>Exposure Level:</b> %{{x}}<br><b>Bleaching Percentage:</b> %{{y:.2f}}%<extra></extra>'
             ),
             row=1, col=1
         )
@@ -296,7 +302,63 @@ def create_management_analysis():
     """Create management authorities coral recovery analysis"""
     recovery_df = load_recovery_data()
     
-    # Filter recovery data excluding null, 'nd', and 'Not Reported'
+    # Management categories dictionary
+    management_categories = {
+        'National Park Service': 'National Government Agencies',
+        'Federal or national ministry or agency': 'National Government Agencies',
+        'Ministry of Environment': 'National Government Agencies',
+        'Ministry of Agriculture': 'National Government Agencies',
+        'U.S. Fish and Wildlife Service': 'National Government Agencies',
+        'Department of Environment': 'National Government Agencies',
+        'Environmental Protection Agency': 'National Government Agencies',
+        'National Oceanic and Atmospheric Administration': 'National Government Agencies',
+        'AU-QLD_DES': 'State/Provincial Authorities',
+        'AU-WA_DBCA': 'State/Provincial Authorities',
+        'AU-NSW_OEH': 'State/Provincial Authorities',
+        'State Department of Conservation': 'State/Provincial Authorities',
+        'State Fish and Wildlife': 'State/Provincial Authorities',
+        'Mili Atoll Local Government': 'Local/Regional Management',
+        'Jaluit Atoll Local Government': 'Local/Regional Management',
+        'Rongelap Atoll Local Government': 'Local/Regional Management',
+        'LGU': 'Local/Regional Management',
+        'Village Chiefs': 'Traditional/Community Management',
+        'Qoliqoli Committee': 'Traditional/Community Management',
+        'Traditional Fisherman': 'Traditional/Community Management',
+        'Fish Wardens': 'Traditional/Community Management',
+        'Community': 'Traditional/Community Management',
+        'Protected Area Management Board': 'Protected Area Management',
+        'Marine Parks and Reserves Unit': 'Protected Area Management',
+        'National Parks Trust': 'Protected Area Management',
+        'Sabah Parks': 'Protected Area Management',
+        'Fisheries Department': 'Fisheries Management',
+        'Fisheries Division': 'Fisheries Management',
+        'Seychelles Fishing Authority': 'Fisheries Management',
+        'Ministry of Fisheries': 'Fisheries Management',
+        'Nature Seychelles': 'Conservation Organizations',
+        'Chumbe Island Coral Park': 'Conservation Organizations',
+        'Bahamas National Trust': 'Conservation Organizations',
+        'Bermuda Audubon Society': 'Conservation Organizations'
+    }
+    
+    def assign_category(authority):
+        if pd.isna(authority):
+            return 'Unspecified'
+        if authority in management_categories:
+            return management_categories[authority]
+        if any(keyword in str(authority).lower() for keyword in ['ministry', 'national', 'federal']):
+            return 'National Government Agencies'
+        elif any(keyword in str(authority).lower() for keyword in ['park', 'protected area']):
+            return 'Protected Area Management'
+        elif any(keyword in str(authority).lower() for keyword in ['fish']):
+            return 'Fisheries Management'
+        elif any(keyword in str(authority).lower() for keyword in ['community', 'village', 'traditional']):
+            return 'Traditional/Community Management'
+        elif any(keyword in str(authority).lower() for keyword in ['conservation', 'nature']):
+            return 'Conservation Organizations'
+        else:
+            return 'Other'
+    
+    # Filter and prepare data
     recovery_mgmt = recovery_df[
         (recovery_df['management_authority'].notnull()) &
         (recovery_df['management_authority'] != 'nd') &
@@ -304,35 +366,30 @@ def create_management_analysis():
         (recovery_df['percent_hard_coral_cover'].notnull())
     ].copy()
     
-    # Aggregate mean recovery percent and count per management authority
-    agg = recovery_mgmt.groupby('management_authority').agg(
-        mean_recovery=('percent_hard_coral_cover', 'mean'),
-        count=('percent_hard_coral_cover', 'size')
-    ).reset_index()
+    # Apply categorization
+    recovery_mgmt['management_category'] = recovery_mgmt['management_authority'].apply(assign_category)
     
-    # Keep only top 15 by count and sort by mean recovery ascending
-    agg_top = agg.sort_values('count', ascending=False).head(15)
-    agg_top = agg_top.sort_values('mean_recovery', ascending=True)
+    # Calculate mean recovery by category
+    agg_by_category = recovery_mgmt.groupby('management_category')['percent_hard_coral_cover'].mean().reset_index()
+    agg_by_category = agg_by_category.sort_values('percent_hard_coral_cover', ascending=True)
     
     fig = go.Figure(go.Bar(
-        y=agg_top['management_authority'],
-        x=agg_top['mean_recovery'],
+        y=agg_by_category['management_category'],
+        x=agg_by_category['percent_hard_coral_cover'],
         orientation='h',
         marker=dict(
-            color=agg_top['mean_recovery'],
-            colorscale='Greens',
+            color=agg_by_category['percent_hard_coral_cover'],
+            colorscale=[[0, '#E1F5FE'], [0.5, '#4FC3F7'], [1, '#01579B']],
             showscale=True,
             colorbar=dict(title="Mean Recovery %")
         ),
-        text=agg_top['count'],
-        textposition='auto',
-        hovertemplate='<b>%{y}</b><br>Mean Recovery: %{x:.2f}%<br>Samples: %{text}<extra></extra>'
+        hovertemplate='<b>%{y}</b><br>Mean Recovery: %{x:.2f}%<extra></extra>'
     ))
     
     fig.update_layout(
         xaxis_title='Mean Percent Hard Coral Cover',
-        yaxis_title='Management Authority',
-        height=700,
+        yaxis_title='Management Category',
+        height=600,
         margin=dict(l=200)
     )
     
