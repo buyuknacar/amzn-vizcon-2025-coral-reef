@@ -14,7 +14,12 @@ apply_styling()
 # TITLE
 # st.title("Coral Reefs Under Threat and Hope for Recovery")
 
-st.title("From Bleaching to Balance: Coral Sustainability Matters")
+# st.title("From Bleaching to Balance: Coral Sustainability Matters")
+
+st.title("FROM BRIGHT TO WHITE")
+st.subheader("A Bleaching and Recovery Analysis")
+
+
 
 st.markdown("\n")
 
@@ -57,10 +62,12 @@ with st.spinner("Loading climate timeline..."):
     st.plotly_chart(fig)
 
 st.markdown("""
-This timeline highlights major global climate events that have significantly impacted coral reef ecosystems worldwide. Each event represents a critical moment in the ongoing coral bleaching crisis.
-""")
+📊 **What it shows:**
+An annotated timeline of global climate events that affected coral bleaching
 
-st.info("💡 **Insight**: Notice the increasing frequency and severity of bleaching events, particularly the unprecedented back-to-back events in recent years.")
+🔎 **Meaning:**
+By overlaying real-world events, this chart connects the data to human and ecological consequences
+""")
 
 
 st.divider()
@@ -69,8 +76,6 @@ st.divider()
 # Datasets
 st.header("Dataset Introduction")
 
-st.image("utils/coral reef.jpg", 
-         caption="Coral reefs are among Earth's most diverse ecosystems, supporting 25% of all marine life")
 
 st.markdown("""
 To understand the global coral crisis, we analyze two comprehensive datasets that capture both the **destruction** and **recovery** of coral reefs worldwide.
@@ -120,11 +125,14 @@ with st.spinner("Loading bleaching visualization..."):
     st.plotly_chart(fig)
 
 st.markdown("""
-This interactive heatmap reveals the global distribution and intensity of coral bleaching events from 2000-2019. 
-The animation shows how bleaching patterns evolved over time, with warmer colors indicating higher bleaching percentages.
-""")
+Chart 1 – Global Heatmap of Coral Bleaching Over Time
 
-st.info("💡 **Insight**: Use the play button to see temporal patterns, or drag the slider to explore specific years.")
+📊 **What it shows:**
+A timeline of bleaching events across global reef locations since 2000, highlighting peaks in mass bleaching years.
+
+🔎 **Meaning:**
+This visualization communicates the alarming trend — bleaching is no longer rare. It's happening more frequently and with greater intensity, linked to global temperature rise. This chart also highlights the geographic hotspots, such as the Caribbean, Great Barrier Reef, and Indo-Pacific. It underlines that bleaching is not an isolated issue — it's a global climate crisis.
+""")
 
 # Viz 2
 st.markdown("## K Means Analysis")
@@ -134,13 +142,12 @@ with st.spinner("Loading K-means analysis..."):
     st.plotly_chart(fig)
 
 st.markdown("""
-This analysis shows the relative influence of different environmental factors on coral recovery:
-- **Geographic Location** and **Macroalgal Competition** are the dominant factors
-- **Temperature Factors** and **Depth** have moderate influence
-- **Other Environmental Factors** have minimal impact
-""")
+📊 **What it shows:**
+Four key factors driving coral recovery: geographic location, temperature patterns, macroalgal competition, and depth
 
-st.info("💡 **Insight**: Different colored clusters represent coral sites with similar environmental characteristics and bleaching patterns.")
+🔎 **Meaning:**
+Geographic location dominates recovery patterns, explaining why some reefs are more resilient. Depth offers refuge in deeper waters, while algal competition threatens weakened corals post-bleaching. These insights guide targeted conservation — protecting deeper areas, controlling algal growth, and maintaining water quality can significantly improve recovery success for the 25% of marine life dependent on reefs.
+""")
 
 # Viz 3
 st.markdown("## Coral Bleaching and Environmental Correlation")
@@ -150,14 +157,12 @@ with st.spinner("Loading environmental correlation dashboard..."):
     st.plotly_chart(fig)
 
 st.markdown("""
-This comprehensive dashboard analyzes the relationship between coral bleaching and environmental factors:
-- **Bleaching trends** over time globally and by country
-- **Exposure levels** impact on bleaching severity
-- **Top 15 countries** most affected by bleaching
-- **Environmental correlations** with temperature, turbidity, and wind speed
-""")
+📊 **What it shows:**
+Correlation of bleaching with exposure levels, sea temperature, turbidity, and windspeed
 
-st.info("💡 **Insight**: Use the dropdown to switch between global view and individual country analysis to identify regional patterns.")
+🔎 **Meaning:**
+Temperature rise is the strongest driver, but local conditions like water clarity and wind patterns amplify vulnerability — proving the need for both global and local action.
+""")
 
 # Viz 4
 st.markdown("## Management Authority Effectiveness")
@@ -167,13 +172,10 @@ with st.spinner("Loading management analysis..."):
     st.plotly_chart(fig)
 
 st.markdown("""
-This analysis evaluates the effectiveness of different management authorities in coral recovery:
-- **Horizontal bar chart** shows mean coral recovery percentages by management authority
-- **Color gradient** indicates recovery performance (darker green = better recovery)
-- **Sample counts** displayed on bars show data reliability
-""")
+📊 **What it shows:** Recovery rates across different management approaches, with local/regional authorities achieving highest success (40%) and fisheries management close behind (35-40%).
 
-st.info("💡 **Insight**: Compare management approaches to identify which authorities achieve the highest coral recovery rates.")
+🔎 **Meaning:** Localized management outperforms broad strategies because it addresses specific reef needs—controlling macroalgae, managing local stressors, and empowering communities. While global climate action remains crucial, these findings suggest that successful coral conservation depends on tailored, community-driven approaches that complement geographic and environmental factors.
+""")
 
 # Viz 5
 st.markdown("## Great Barrier Reef Forecast")
@@ -183,13 +185,10 @@ with st.spinner("Loading GBR forecast..."):
     st.plotly_chart(fig)
 
 st.markdown("""
-This time series analysis shows the Great Barrier Reef's coral cover trajectory:
-- **Historical data** (blue) shows observed coral cover percentages over time
-- **Forecast data** (red) projects future coral cover for the next 10 years
-- **Confidence interval** (shaded area) indicates forecast uncertainty range
-""")
+📊 **What it shows:** Historical coral cover (1990-2020) peaked at 35% in the mid-1990s, declined to 20-25% after 2010, with projections showing further decline to 15% by 2030.
 
-st.info("💡 **Insight**: The forecast helps predict future coral health trends and informs conservation planning decisions.")
+🔎 **Meaning:** The widening confidence interval reflects increasing uncertainty as cumulative bleaching events reduce recovery windows. While the downward trend appears inevitable under current climate trajectories, varying management success rates suggest targeted interventions could moderate this decline, making every conservation effort critical for the reef's survival.
+""")
 
 st.divider()
 
@@ -200,12 +199,16 @@ As we analyze the patterns of recovery and decline in places like the Great Barr
 
 While reefs have shown the ability to recover in the past, the combination of rising temperatures, pollution in the oceans, and more frequent extreme weather events is testing their ability to survive. Analyzing this data isn't just about documenting decline, it's about finding ways to protect and preserve these ecosystems for future generations.
 
-**A reef without color is a warning, not an ending**
+            
+### A reef without color is a warning, not an ending.
+            
 """)
 
+st.divider()
 
 st.markdown("## Tools and Tech Used")
 
+st.markdown("\n")
 st.markdown("\n")
 
 col1, col2, col3, col4, col5 = st.columns(5)
@@ -217,7 +220,7 @@ with col2:
     st.image("utils/Q.jpeg", width=100)
     
 with col3:
-    st.image("utils/chatgpt.jpeg", width=100)
+    st.image("utils/chatgpt.png", width=100)
     
 with col4:
     st.image("utils/deepnote.png", width=100)

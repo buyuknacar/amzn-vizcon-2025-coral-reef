@@ -27,6 +27,7 @@ def apply_styling():
     /* 2. Body text */
     .stMarkdown p, .stMarkdown li {{
         color: {palette['deep_blue']} !important;
+        font-size: 20px !important;
     }}
 
     /* 2. Header hierarchy */

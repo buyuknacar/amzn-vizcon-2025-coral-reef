@@ -91,8 +91,8 @@ def create_bleaching_heatmap():
             currentvalue=dict(prefix="Year: "),
             steps=[dict(label=str(year), method="animate", args=[[str(year)]]) for year in sorted(bleaching_filtered['date_year'].unique())]
         )],
-        plot_bgcolor='#E0FFFF',
-        paper_bgcolor='#E0FFFF',
+        plot_bgcolor='#F5FBFF',
+        paper_bgcolor='#F5FBFF',
         font=dict(color='black')
     )
     return fig
@@ -118,8 +118,8 @@ def create_kmeans_analysis():
     fig.update_layout(
         height=500,
         showlegend=True,
-        plot_bgcolor='#E0FFFF',
-        paper_bgcolor='#E0FFFF',
+        plot_bgcolor='#F5FBFF',
+        paper_bgcolor='#F5FBFF',
         font=dict(color='black')
     )
     
@@ -269,8 +269,8 @@ def create_bleaching_dashboard():
     fig.update_layout(
         height=2400,
         showlegend=True,
-        plot_bgcolor='#E0FFFF',
-        paper_bgcolor='#E0FFFF',
+        plot_bgcolor='#F5FBFF',
+        paper_bgcolor='#F5FBFF',
         font=dict(color='black'),
         updatemenus=[dict(
             buttons=buttons,
@@ -405,8 +405,8 @@ def create_management_analysis():
         yaxis_title='Management Category',
         height=600,
         margin=dict(l=200),
-        plot_bgcolor='#E0FFFF',
-        paper_bgcolor='#E0FFFF',
+        plot_bgcolor='#F5FBFF',
+        paper_bgcolor='#F5FBFF',
         font=dict(color='black')
     )
     
@@ -480,8 +480,8 @@ def create_gbr_forecast():
         height=600,
         showlegend=True,
         hovermode='x unified',
-        plot_bgcolor='#E0FFFF',
-        paper_bgcolor='#E0FFFF',
+        plot_bgcolor='#F5FBFF',
+        paper_bgcolor='#F5FBFF',
         font=dict(color='black'),
         legend=dict(
             orientation="h",
@@ -586,8 +586,8 @@ def create_climate_timeline():
         ),
         height=400,
         margin=dict(l=50, r=50, t=20, b=20),
-        plot_bgcolor='#E0FFFF',
-        paper_bgcolor='#E0FFFF',
+        plot_bgcolor='#F5FBFF',
+        paper_bgcolor='#F5FBFF',
         font=dict(color='black'),
         shapes=[
             dict(
