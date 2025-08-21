@@ -420,8 +420,8 @@ def create_gbr_forecast():
         y=y_hist,
         mode='lines+markers',
         name='Observed',
-        line=dict(color='#2E5077'),
-        marker=dict(size=6)
+        line=dict(color='#4FC3F7', width=3),
+        marker=dict(size=8, color='#4FC3F7')
     ))
     
     # Add forecast data
@@ -430,19 +430,28 @@ def create_gbr_forecast():
         y=y_fore,
         mode='lines+markers',
         name='Forecast',
-        line=dict(color='#FF6B6B'),
-        marker=dict(size=6)
+        line=dict(color='#01579B', width=3),
+        marker=dict(size=8, color='#01579B')
     ))
     
-    # Add confidence interval
+    # Add confidence interval upper bound
     fig.add_trace(go.Scatter(
-        x=np.concatenate([x_fore, x_fore[::-1]]),
-        y=np.concatenate([y_hi, y_lo[::-1]]),
-        fill='toself',
-        fillcolor='rgba(255, 107, 107, 0.2)',
-        line=dict(color='rgba(255,255,255,0)'),
-        name='95% Confidence Interval',
-        showlegend=True
+        x=x_fore,
+        y=y_hi,
+        mode='lines',
+        line=dict(width=0),
+        showlegend=False
+    ))
+    
+    # Add confidence interval lower bound with fill
+    fig.add_trace(go.Scatter(
+        x=x_fore,
+        y=y_lo,
+        mode='lines',
+        line=dict(width=0),
+        fillcolor='rgba(79, 195, 247, 0.2)',
+        fill='tonexty',
+        name='95% Confidence Interval'
     ))
     
     fig.update_layout(
@@ -453,8 +462,8 @@ def create_gbr_forecast():
         hovermode='x unified'
     )
     
-    fig.update_xaxes(showgrid=True, gridwidth=1, gridcolor='lightgray')
-    fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor='lightgray')
+    fig.update_xaxes(showgrid=True, gridwidth=1, gridcolor='rgba(211, 211, 211, 0.5)')
+    fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor='rgba(211, 211, 211, 0.5)')
     
     return fig
 
