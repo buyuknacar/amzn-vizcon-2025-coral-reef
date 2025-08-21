@@ -63,7 +63,7 @@ def create_bleaching_heatmap():
         center=dict(lat=0, lon=0),
         zoom=0.4,
         height=700,
-        title='Coral Bleaching Intensity Heatmap',
+
         hover_name='country_name',
         hover_data={'percent_bleaching': True, 'date_year': True}
     )
@@ -73,50 +73,14 @@ def create_bleaching_heatmap():
 
 # Visualization 2 - KMeans Analysis
 def create_kmeans_analysis():
-    """Create K-means analysis visualizations"""
-    dfC = load_clustered_data()
-    correlation_matrix = load_correlation_matrix()
-    elbow_df = load_elbow_results()
-    
-    # Geographic distribution of clusters
-    fig1 = px.scatter(
-        dfC,
-        x="Longitude_Degrees",
-        y="Latitude_Degrees",
-        color="Cluster",
-        color_continuous_scale="viridis",
-        title="Geographic Distribution of Clusters",
-        labels={"Longitude_Degrees": "Longitude", "Latitude_Degrees": "Latitude"},
-        height=500
-    )
-    
-    # Correlation matrix heatmap
-    fig2 = px.imshow(
-        correlation_matrix,
-        text_auto=True,
-        color_continuous_scale="RdBu_r",
-        title="Correlation Matrix of Coral Features",
-        height=600
-    )
-    
-    # Elbow method plot
-    fig3 = px.line(
-        elbow_df,
-        x="k",
-        y="inertia",
-        markers=True,
-        title="Elbow Method For Optimal k",
-        labels={"k": "Number of Clusters (k)", "inertia": "Inertia"},
-        height=400
-    )
-    
+    """Create K-means analysis visualization"""
     # Donut chart for factor influence
     features = ['Geographic Location', 'Macroalgal Competition', 'Temperature Factors', 
                'Depth', 'Other Environmental Factors']
     sizes = [27.5, 27, 20, 17, 7]
     colors = ['#FF9999', '#66B2FF', '#99FF99', '#FFCC99', '#FF99CC']
     
-    fig4 = go.Figure(data=[go.Pie(
+    fig = go.Figure(data=[go.Pie(
         labels=features,
         values=sizes,
         hole=0.7,
@@ -125,13 +89,12 @@ def create_kmeans_analysis():
         textposition='outside'
     )])
     
-    fig4.update_layout(
-        title="Influence of Different Factors on Coral Recovery",
+    fig.update_layout(
         height=500,
         showlegend=True
     )
     
-    return fig1, fig2, fig3, fig4
+    return fig
 
 # Visualization 3 - Coral Bleaching and Environmental Correlation
 def create_bleaching_dashboard():
@@ -299,7 +262,7 @@ def create_bleaching_dashboard():
     
     fig.update_layout(
         height=2800,
-        title_text="Coral Bleaching Analysis Dashboard",
+
         showlegend=True,
         updatemenus=[dict(
             buttons=buttons,
@@ -366,7 +329,6 @@ def create_management_analysis():
     ))
     
     fig.update_layout(
-        title='Top 15 Management Authorities by Mean Coral Recovery %',
         xaxis_title='Mean Percent Hard Coral Cover',
         yaxis_title='Management Authority',
         height=700,
@@ -426,7 +388,6 @@ def create_gbr_forecast():
     ))
     
     fig.update_layout(
-        title='Average Hard Coral Cover in the Great Barrier Reef<br><sub>Observed & 10-Year Forecast</sub>',
         xaxis_title='Year',
         yaxis_title='Hard Coral Cover Percentage',
         height=600,

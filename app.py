@@ -151,18 +151,14 @@ with st.container():
     viz3_placeholder = st.empty()
     with viz3_placeholder.container():
         with st.spinner("Loading K-means analysis..."):
-            fig1, fig2, fig3, fig4 = create_kmeans_analysis()
-            
-            st.plotly_chart(fig1, use_container_width=True)
-            st.plotly_chart(fig2, use_container_width=True)
-            st.plotly_chart(fig3, use_container_width=True)
-            st.plotly_chart(fig4, use_container_width=True)
+            fig = create_kmeans_analysis()
+            st.plotly_chart(fig, use_container_width=True)
     
     st.markdown("""
-    This K-means clustering analysis reveals distinct patterns in coral reef characteristics:
-    - **Geographic clusters** show regional similarities in coral conditions
-    - **Correlation matrix** identifies relationships between environmental factors
-    - **Elbow method** determines the optimal number of clusters for analysis
+    This analysis shows the relative influence of different environmental factors on coral recovery:
+    - **Geographic Location** and **Macroalgal Competition** are the dominant factors
+    - **Temperature Factors** and **Depth** have moderate influence
+    - **Other Environmental Factors** have minimal impact
     """)
     
     st.info("💡 **Insight**: Different colored clusters represent coral sites with similar environmental characteristics and bleaching patterns.")
