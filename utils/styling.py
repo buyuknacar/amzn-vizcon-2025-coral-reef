@@ -7,7 +7,7 @@ palette = {
     "coral_red": "#ff6f61",
     "turquoise": "#2f9e99",
     "off_white": "#fdfdfd",
-    "powder_blue": "#B0E0E6",    # A soft, light blue that pairs well with salmon
+    "powder_blue": "#D5FFFF",    # A soft, light blue that pairs well with salmon
     "steel_blue": "#4682B4",     # A medium blue that bridges deep_blue and turquoise
     "cerulean": "#007BA7",       # A bright middle blue that complements coral_red
     "dusty_blue": "#6699CC",     # A muted blue that works with the overall scheme
@@ -27,7 +27,6 @@ def apply_styling():
     /* 2. Body text */
     .stMarkdown p, .stMarkdown li {{
         color: {palette['deep_blue']} !important;
-        font-size: 18px !important;
     }}
 
     /* 2. Header hierarchy */
@@ -35,14 +34,17 @@ def apply_styling():
         color: {palette['deep_blue']} !important;
         text-shadow: 1px 1px 2px rgba(0,0,0,0.25);
         letter-spacing: 0.5px;
+        text-align: center !important;
     }}
     h3, h4 {{
         color: {palette['deep_blue']} !important;
         font-weight: 600;
+        text-align: center !important;
     }}
     h5, h6 {{
         color: {palette['coral_red']} !important;
         font-weight: 500;
+        text-align: center !important;
     }}
 
     /* 3. Links & buttons */
@@ -95,6 +97,13 @@ def apply_styling():
     .stApp > div:first-child > div:first-child > div:first-child > div:nth-child(4) h2, 
     .stApp > div:first-child > div:first-child > div:first-child > div:nth-child(4) h3 {{
         color: {palette['off_white']} !important;
+    }}
+    
+    /* 7. Full width for visualizations */
+    .main .block-container {{
+        max-width: none !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
     }}
     </style>
     """, unsafe_allow_html=True)

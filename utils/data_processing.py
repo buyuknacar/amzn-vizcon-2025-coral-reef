@@ -85,7 +85,16 @@ def create_bleaching_heatmap():
         }
     )
     
-    fig.update_layout(coloraxis_colorbar=dict(title="Percent Bleaching"))
+    fig.update_layout(
+        coloraxis_colorbar=dict(title="Percent Bleaching"),
+        sliders=[dict(
+            currentvalue=dict(prefix="Year: "),
+            steps=[dict(label=str(year), method="animate", args=[[str(year)]]) for year in sorted(bleaching_filtered['date_year'].unique())]
+        )],
+        plot_bgcolor='#E0FFFF',
+        paper_bgcolor='#E0FFFF',
+        font=dict(color='black')
+    )
     return fig
 
 # Visualization 2 - KMeans Analysis
@@ -108,7 +117,10 @@ def create_kmeans_analysis():
     
     fig.update_layout(
         height=500,
-        showlegend=True
+        showlegend=True,
+        plot_bgcolor='#E0FFFF',
+        paper_bgcolor='#E0FFFF',
+        font=dict(color='black')
     )
     
     return fig
@@ -256,8 +268,10 @@ def create_bleaching_dashboard():
     
     fig.update_layout(
         height=2400,
-
         showlegend=True,
+        plot_bgcolor='#E0FFFF',
+        paper_bgcolor='#E0FFFF',
+        font=dict(color='black'),
         updatemenus=[dict(
             buttons=buttons,
             direction="down",
@@ -278,21 +292,21 @@ def create_bleaching_dashboard():
             xref="paper",
             yref="paper",
             showarrow=False,
-            font=dict(size=16, color="#2E5077", family="Arial Black")
+            font=dict(size=16, color="black", family="Arial Black")
         )]
     )
     
     # Update axes labels
-    fig.update_xaxes(title_text="Exposure Level", row=1, col=1)
-    fig.update_yaxes(title_text="Bleaching %", row=1, col=1)
-    fig.update_xaxes(title_text="Country", row=2, col=1, tickangle=45)
-    fig.update_yaxes(title_text="Bleaching %", row=2, col=1)
-    fig.update_xaxes(title_text="Year", row=3, col=1)
-    fig.update_yaxes(title_text="Temperature (K)", row=3, col=1)
-    fig.update_xaxes(title_text="Year", row=4, col=1)
-    fig.update_yaxes(title_text="Turbidity", row=4, col=1)
-    fig.update_xaxes(title_text="Year", row=5, col=1)
-    fig.update_yaxes(title_text="Wind Speed (m/s)", row=5, col=1)
+    fig.update_xaxes(title_text="Exposure Level", title_font_color="black", tickfont_color="black", row=1, col=1)
+    fig.update_yaxes(title_text="Bleaching %", title_font_color="black", tickfont_color="black", row=1, col=1)
+    fig.update_xaxes(title_text="Country", title_font_color="black", tickfont_color="black", row=2, col=1, tickangle=45)
+    fig.update_yaxes(title_text="Bleaching %", title_font_color="black", tickfont_color="black", row=2, col=1)
+    fig.update_xaxes(title_text="Year", title_font_color="black", tickfont_color="black", row=3, col=1)
+    fig.update_yaxes(title_text="Temperature (K)", title_font_color="black", tickfont_color="black", row=3, col=1)
+    fig.update_xaxes(title_text="Year", title_font_color="black", tickfont_color="black", row=4, col=1)
+    fig.update_yaxes(title_text="Turbidity", title_font_color="black", tickfont_color="black", row=4, col=1)
+    fig.update_xaxes(title_text="Year", title_font_color="black", tickfont_color="black", row=5, col=1)
+    fig.update_yaxes(title_text="Wind Speed (m/s)", title_font_color="black", tickfont_color="black", row=5, col=1)
     
     return fig
 
@@ -390,8 +404,14 @@ def create_management_analysis():
         xaxis_title='Mean Percent Hard Coral Cover',
         yaxis_title='Management Category',
         height=600,
-        margin=dict(l=200)
+        margin=dict(l=200),
+        plot_bgcolor='#E0FFFF',
+        paper_bgcolor='#E0FFFF',
+        font=dict(color='black')
     )
+    
+    fig.update_xaxes(title_font_color='black', tickfont_color='black')
+    fig.update_yaxes(title_font_color='black', tickfont_color='black')
     
     return fig
 
@@ -460,17 +480,126 @@ def create_gbr_forecast():
         height=600,
         showlegend=True,
         hovermode='x unified',
+        plot_bgcolor='#E0FFFF',
+        paper_bgcolor='#E0FFFF',
+        font=dict(color='black'),
         legend=dict(
             orientation="h",
             yanchor="bottom",
             y=1.06,
             xanchor="center",
-            x=0.5
+            x=0.5,
+            font=dict(color='black')
         )
     )
     
-    fig.update_xaxes(showgrid=True, gridwidth=1, gridcolor='rgba(211, 211, 211, 0.5)')
-    fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor='rgba(211, 211, 211, 0.5)')
+    fig.update_xaxes(showgrid=True, gridwidth=1, gridcolor='rgba(211, 211, 211, 0.5)', title_font_color='black', tickfont_color='black')
+    fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor='rgba(211, 211, 211, 0.5)', title_font_color='black', tickfont_color='black')
+    
+    return fig
+
+# Visualization 6 - Global Climate Events Timeline
+def create_climate_timeline():
+    """Create global climate events timeline visualization"""
+    # Define timeline events with improved formatting
+    events = [
+        {
+            "year": "2005",
+            "event": "Caribbean Heatwave Crisis",
+            "detail": "80% bleaching in some reefs",
+            "color": "#FFA500",
+            "position": -1
+        },
+        {
+            "year": "2010",
+            "event": "SE Asia & Indian Ocean Event",
+            "detail": "Moderate El Niño bleaching",
+            "color": "#FF4500",
+            "position": 1
+        },
+        {
+            "year": "2014–2017",
+            "event": "Longest Global Bleaching",
+            "detail": "Severe damage on Great Barrier Reef",
+            "color": "#FF0000",
+            "position": -1
+        },
+        {
+            "year": "2019–2020",
+            "event": "Pacific & GBR Crisis",
+            "detail": "High ocean heat stress",
+            "color": "#8B0000",
+            "position": 1
+        }
+    ]
+
+    # Create figure
+    fig = go.Figure()
+
+    # Add markers and text for each event
+    for i, e in enumerate(events):
+        y_pos = 0 if e["position"] > 0 else 0
+        text_pos = "top center" if e["position"] > 0 else "bottom center"
+        
+        # Add event markers
+        fig.add_trace(go.Scatter(
+            x=[i],
+            y=[y_pos],
+            mode="markers+text",
+            marker=dict(
+                size=25,
+                color=e["color"],
+                line=dict(color="white", width=2)
+            ),
+            text=[f"<b>{e['year']}</b><br>{e['event']}<br><i>{e['detail']}</i>"],
+            textposition=text_pos,
+            textfont=dict(size=12),
+            hoverinfo="text",
+            hovertext=f"<b>Year:</b> {e['year']}<br><b>Event:</b> {e['event']}<br><b>Impact:</b> {e['detail']}",
+            showlegend=False
+        ))
+
+    # Add connecting line
+    fig.add_trace(go.Scatter(
+        x=list(range(len(events))),
+        y=[0]*len(events),
+        mode="lines",
+        line=dict(color="gray", width=3),
+        hoverinfo="none",
+        showlegend=False
+    ))
+
+    # Update layout
+    fig.update_layout(
+        showlegend=False,
+        xaxis=dict(
+            showticklabels=False,
+            showgrid=False,
+            zeroline=False,
+            range=[-0.5, len(events)-0.5]
+        ),
+        yaxis=dict(
+            showticklabels=False,
+            showgrid=False,
+            zeroline=False,
+            range=[-0.5, 0.5]
+        ),
+        height=400,
+        margin=dict(l=50, r=50, t=20, b=20),
+        plot_bgcolor='#E0FFFF',
+        paper_bgcolor='#E0FFFF',
+        font=dict(color='black'),
+        shapes=[
+            dict(
+                type="line",
+                x0=-0.5,
+                y0=-0.01,
+                x1=len(events)-0.5,
+                y1=-0.01,
+                line=dict(color="rgba(0,0,0,0.1)", width=5)
+            )
+        ]
+    )
     
     return fig
 

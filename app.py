@@ -2,7 +2,7 @@
 import streamlit as st
 import plotly.express as p
 from utils.styling import apply_styling
-from utils.data_processing import create_bleaching_heatmap, create_kmeans_analysis, create_bleaching_dashboard, create_management_analysis, create_gbr_forecast
+from utils.data_processing import create_bleaching_heatmap, create_kmeans_analysis, create_bleaching_dashboard, create_management_analysis, create_gbr_forecast, create_climate_timeline
 
 # Apply styling
 apply_styling()
@@ -43,34 +43,21 @@ with st.container():
     
     st.warning(" **The Ripple Effect**: When reefs die, fish populations decline, marine food webs collapse, coastal communities lose tourism income, and natural storm protection weakens.")
     
+
     st.markdown("""
-    ### The Great Barrier Reef: A Global Crisis Symbol
+    ### Global Climate Events Timeline""")
     
-    The Great Barrier Reef has become the global poster child for this crisis. As the world's largest reef system, its recent history of severe bleaching events has shocked scientists and sparked worldwide concern about the future of coral ecosystems.
-    
-    **Timeline of Mass Bleaching Events:**
+with st.spinner("Loading climate timeline..."):
+    fig = create_climate_timeline()
+    st.plotly_chart(fig)
+
+with st.container():
+    st.markdown("""
+    This timeline highlights major global climate events that have significantly impacted coral reef ecosystems worldwide. Each event represents a critical moment in the ongoing coral bleaching crisis.
     """)
     
-    col1, col2 = st.columns([1, 3])
-    with col1:
-        st.metric("1998", "First Event", "<5% mortality")
-        st.metric("2002", "Wide Event", ">50% affected")
-        st.metric("2006", "Localized", "98% bleached")
-        st.metric("2016-17", "B2B", "2/3 affected")
-    
-    with col2:
-        st.markdown("""
-        - **1998**: The first recorded mass bleaching event. Most reefs recovered fully with less than 5% of inshore reefs suffering high coral mortality
-        - **2002**: More widespread than 1998, affecting over half of the observed reefs
-        - **2006**: A localized event, mainly in the southern parts, with up to 98% of corals bleached on some reefs
-        - **2016-2017**: Back-to-back bleaching years, a first for the reef, collectively affecting two-thirds of the Great Barrier Reef
-        - **2020**: Widespread bleaching with restricted monitoring during Covid-19
-        - **2022**: Unusual bleaching during typically cooler La Niña conditions
-        - **2024**: Fifth mass bleaching event, part of the 4th global bleaching event
-        - **2025**: Sixth mass bleaching since 2016, first time both Australian World Heritage reefs bleached simultaneously
-        """)
-    
-    st.error("**6 mass bleaching events** in just 8 years (2016-2025) - an unprecedented frequency that gives reefs little time to recover.")
+    st.info("💡 **Insight**: Notice the increasing frequency and severity of bleaching events, particularly the unprecedented back-to-back events in recent years.")
+
 
 st.divider()
 
@@ -131,12 +118,11 @@ st.divider()
 with st.container():
     st.markdown("## Coral Bleaching Over The Years")
     
-    viz1_placeholder = st.empty()
-    with viz1_placeholder.container():
-        with st.spinner("Loading bleaching visualization..."):
-            fig = create_bleaching_heatmap()
-            st.plotly_chart(fig, use_container_width=True)
-    
+with st.spinner("Loading bleaching visualization..."):
+    fig = create_bleaching_heatmap()
+    st.plotly_chart(fig)
+
+with st.container():
     st.markdown("""
     This interactive heatmap reveals the global distribution and intensity of coral bleaching events from 2000-2019. 
     The animation shows how bleaching patterns evolved over time, with warmer colors indicating higher bleaching percentages.
@@ -148,12 +134,11 @@ with st.container():
 with st.container():
     st.markdown("## K Means Analysis")
     
-    viz3_placeholder = st.empty()
-    with viz3_placeholder.container():
-        with st.spinner("Loading K-means analysis..."):
-            fig = create_kmeans_analysis()
-            st.plotly_chart(fig, use_container_width=True)
-    
+with st.spinner("Loading K-means analysis..."):
+    fig = create_kmeans_analysis()
+    st.plotly_chart(fig)
+
+with st.container():
     st.markdown("""
     This analysis shows the relative influence of different environmental factors on coral recovery:
     - **Geographic Location** and **Macroalgal Competition** are the dominant factors
@@ -167,12 +152,11 @@ with st.container():
 with st.container():
     st.markdown("## Coral Bleaching and Environmental Correlation")
     
-    viz4_placeholder = st.empty()
-    with viz4_placeholder.container():
-        with st.spinner("Loading environmental correlation dashboard..."):
-            fig = create_bleaching_dashboard()
-            st.plotly_chart(fig, use_container_width=True)
-    
+with st.spinner("Loading environmental correlation dashboard..."):
+    fig = create_bleaching_dashboard()
+    st.plotly_chart(fig)
+
+with st.container():
     st.markdown("""
     This comprehensive dashboard analyzes the relationship between coral bleaching and environmental factors:
     - **Bleaching trends** over time globally and by country
@@ -187,12 +171,11 @@ with st.container():
 with st.container():
     st.markdown("## Management Authority Effectiveness")
     
-    viz5_placeholder = st.empty()
-    with viz5_placeholder.container():
-        with st.spinner("Loading management analysis..."):
-            fig = create_management_analysis()
-            st.plotly_chart(fig, use_container_width=True)
-    
+with st.spinner("Loading management analysis..."):
+    fig = create_management_analysis()
+    st.plotly_chart(fig)
+
+with st.container():
     st.markdown("""
     This analysis evaluates the effectiveness of different management authorities in coral recovery:
     - **Horizontal bar chart** shows mean coral recovery percentages by management authority
@@ -206,12 +189,11 @@ with st.container():
 with st.container():
     st.markdown("## Great Barrier Reef Forecast")
     
-    viz6_placeholder = st.empty()
-    with viz6_placeholder.container():
-        with st.spinner("Loading GBR forecast..."):
-            fig = create_gbr_forecast()
-            st.plotly_chart(fig, use_container_width=True)
-    
+with st.spinner("Loading GBR forecast..."):
+    fig = create_gbr_forecast()
+    st.plotly_chart(fig)
+
+with st.container():
     st.markdown("""
     This time series analysis shows the Great Barrier Reef's coral cover trajectory:
     - **Historical data** (blue) shows observed coral cover percentages over time
