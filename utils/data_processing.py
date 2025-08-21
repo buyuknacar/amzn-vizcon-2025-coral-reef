@@ -459,7 +459,14 @@ def create_gbr_forecast():
         yaxis_title='Hard Coral Cover Percentage',
         height=600,
         showlegend=True,
-        hovermode='x unified'
+        hovermode='x unified',
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.06,
+            xanchor="center",
+            x=0.5
+        )
     )
     
     fig.update_xaxes(showgrid=True, gridwidth=1, gridcolor='rgba(211, 211, 211, 0.5)')
