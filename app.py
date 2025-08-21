@@ -10,15 +10,17 @@ st.set_page_config(layout="wide")
 # Apply styling
 apply_styling()
 
+# Main container for entire page
+with st.container():
+    # TITLE
+    # st.title("Coral Reefs Under Threat and Hope for Recovery")
 
-# TITLE
-# st.title("Coral Reefs Under Threat and Hope for Recovery")
+    # st.title("From Bleaching to Balance: Coral Sustainability Matters")
 
-# st.title("From Bleaching to Balance: Coral Sustainability Matters")
+    st.title("From Bright to White: A Bleaching and Recovery Analysis")
 
-st.title("FROM BRIGHT TO WHITE")
-st.subheader("A Bleaching and Recovery Analysis")
 
+    st.divider()
 
 
 st.markdown("\n")
@@ -30,11 +32,12 @@ st.markdown("\n")
 
 # Intro
 st.markdown("""
-## The Crisis Beneath the Waves
+## The Fragile Rainforests of the Sea
 
 When trying to understand the topic of sustainability, the impact that humans have on the environment is an extremely broad and significant area of discussion. But, there is **no better example** of human impact on the environment than the negative impacts humans have had on coral reefs around the world.
 
 Coral reefs are some of the most biologically diverse and productive ecosystems—home to a wide array of symbiotic species that create some of the most beautiful living architecture on Earth.
+
 """)
 
 st.info("An estimated **25% of all marine life**, including over 4,000 species of fish, are dependent on coral reefs at some point in their life cycle. **- *U.S. Environmental Protection Agency***")
@@ -56,18 +59,19 @@ st.info(" **The Ripple Effect**: When reefs die, fish populations decline, marin
 
 st.markdown("""
 ### Global Climate Events Timeline""")
-    
-with st.spinner("Loading climate timeline..."):
-    fig = create_climate_timeline()
-    st.plotly_chart(fig)
 
-st.markdown("""
-📊 **What it shows:**
-An annotated timeline of global climate events that affected coral bleaching
+with st.container():
+    with st.spinner("Loading climate timeline..."):
+        fig = create_climate_timeline()
+        st.plotly_chart(fig)
 
-🔎 **Meaning:**
-By overlaying real-world events, this chart connects the data to human and ecological consequences
-""")
+    st.markdown("""
+    📊 **What it shows:**
+    An annotated timeline of global climate events that affected coral bleaching
+
+    🔎 **Meaning:**
+    By overlaying real-world events, this chart connects the data to human and ecological consequences
+    """)
 
 
 st.divider()
@@ -120,83 +124,88 @@ st.divider()
 # Viz 1
 st.markdown("## Coral Bleaching Over The Years")
 
-with st.spinner("Loading bleaching visualization..."):
-    fig = create_bleaching_heatmap()
-    st.plotly_chart(fig)
+with st.container():
+    with st.spinner("Loading bleaching visualization..."):
+        fig = create_bleaching_heatmap()
+        st.plotly_chart(fig)
 
-st.markdown("""
-Chart 1 – Global Heatmap of Coral Bleaching Over Time
+    st.markdown("""
+    Chart 1 – Global Heatmap of Coral Bleaching Over Time
 
-📊 **What it shows:**
-A timeline of bleaching events across global reef locations since 2000, highlighting peaks in mass bleaching years.
+    📊 **What it shows:**
+    A timeline of bleaching events across global reef locations since 2000, highlighting peaks in mass bleaching years.
 
-🔎 **Meaning:**
-This visualization communicates the alarming trend — bleaching is no longer rare. It's happening more frequently and with greater intensity, linked to global temperature rise. This chart also highlights the geographic hotspots, such as the Caribbean, Great Barrier Reef, and Indo-Pacific. It underlines that bleaching is not an isolated issue — it's a global climate crisis.
-""")
+    🔎 **Meaning:**
+    This visualization communicates the alarming trend — bleaching is no longer rare. It's happening more frequently and with greater intensity, linked to global temperature rise. This chart also highlights the geographic hotspots, such as the Caribbean, Great Barrier Reef, and Indo-Pacific. It underlines that bleaching is not an isolated issue — it's a global climate crisis.
+    """)
 
 st.divider()
 
 # Viz 2
 st.markdown("## K Means Analysis")
 
-with st.spinner("Loading K-means analysis..."):
-    fig = create_kmeans_analysis()
-    st.plotly_chart(fig)
+with st.container():
+    with st.spinner("Loading K-means analysis..."):
+        fig = create_kmeans_analysis()
+        st.plotly_chart(fig)
 
-st.markdown("""
-📊 **What it shows:**
-Four key factors driving coral recovery: geographic location, temperature patterns, macroalgal competition, and depth
+    st.markdown("""
+    📊 **What it shows:**
+    Four key factors driving coral recovery: geographic location, temperature patterns, macroalgal competition, and depth
 
-🔎 **Meaning:**
-Geographic location dominates recovery patterns, explaining why some reefs are more resilient. Depth offers refuge in deeper waters, while algal competition threatens weakened corals post-bleaching. These insights guide targeted conservation — protecting deeper areas, controlling algal growth, and maintaining water quality can significantly improve recovery success for the 25% of marine life dependent on reefs.
-""")
+    🔎 **Meaning:**
+    Geographic location dominates recovery patterns, explaining why some reefs are more resilient. Depth offers refuge in deeper waters, while algal competition threatens weakened corals post-bleaching. These insights guide targeted conservation — protecting deeper areas, controlling algal growth, and maintaining water quality can significantly improve recovery success for the 25% of marine life dependent on reefs.
+    """)
 
 st.divider()
 
 # Viz 3
 st.markdown("## Coral Bleaching and Environmental Correlation")
 
-with st.spinner("Loading environmental correlation dashboard..."):
-    fig = create_bleaching_dashboard()
-    st.plotly_chart(fig)
+with st.container():
+    with st.spinner("Loading environmental correlation dashboard..."):
+        fig = create_bleaching_dashboard()
+        st.plotly_chart(fig)
 
-st.markdown("""
-📊 **What it shows:**
-Correlation of bleaching with exposure levels, sea temperature, turbidity, and windspeed
+    st.markdown("""
+    📊 **What it shows:**
+    Correlation of bleaching with exposure levels, sea temperature, turbidity, and windspeed
 
-🔎 **Meaning:**
-Temperature rise is the strongest driver, but local conditions like water clarity and wind patterns amplify vulnerability — proving the need for both global and local action.
-""")
+    🔎 **Meaning:**
+    Temperature rise is the strongest driver, but local conditions like water clarity and wind patterns amplify vulnerability — proving the need for both global and local action.
+    """)
 
 st.divider()
 
 # Viz 4
 st.markdown("## Management Authority Effectiveness")
 
-with st.spinner("Loading management analysis..."):
-    fig = create_management_analysis()
-    st.plotly_chart(fig)
+with st.container():
+    with st.spinner("Loading management analysis..."):
+        fig = create_management_analysis()
+        st.plotly_chart(fig)
 
-st.markdown("""
-📊 **What it shows:** Recovery rates across different management approaches, with local/regional authorities achieving highest success (40%) and fisheries management close behind (35-40%).
+    st.markdown("""
+    📊 **What it shows:** Recovery rates across different management approaches, with local/regional authorities achieving highest success (40%) and fisheries management close behind (35-40%).
 
-🔎 **Meaning:** Localized management outperforms broad strategies because it addresses specific reef needs—controlling macroalgae, managing local stressors, and empowering communities. While global climate action remains crucial, these findings suggest that successful coral conservation depends on tailored, community-driven approaches that complement geographic and environmental factors.
-""")
+    🔎 **Meaning:** Localized management outperforms broad strategies because it addresses specific reef needs—controlling macroalgae, managing local stressors, and empowering communities. While global climate action remains crucial, these findings suggest that successful coral conservation depends on tailored, community-driven approaches that complement geographic and environmental factors.
+    """)
 
 st.divider()
 
 # Viz 5
 st.markdown("## Great Barrier Reef Forecast")
 
-with st.spinner("Loading GBR forecast..."):
-    fig = create_gbr_forecast()
-    st.plotly_chart(fig)
+with st.container():
+    with st.spinner("Loading GBR forecast..."):
+        fig = create_gbr_forecast()
+        st.plotly_chart(fig)
 
-st.markdown("""
-📊 **What it shows:** Historical coral cover (1990-2020) peaked at 35% in the mid-1990s, declined to 20-25% after 2010, with projections showing further decline to 15% by 2030.
+    st.markdown("""
+    📊 **What it shows:** Historical coral cover (1990-2020) peaked at 35% in the mid-1990s, declined to 20-25% after 2010, with projections showing further decline to 15% by 2030.
 
-🔎 **Meaning:** The widening confidence interval reflects increasing uncertainty as cumulative bleaching events reduce recovery windows. While the downward trend appears inevitable under current climate trajectories, varying management success rates suggest targeted interventions could moderate this decline, making every conservation effort critical for the reef's survival.
-""")
+    🔎 **Meaning:** The widening confidence interval reflects increasing uncertainty as cumulative bleaching events reduce recovery windows. While the downward trend appears inevitable under current climate trajectories, varying management success rates suggest targeted interventions could moderate this decline, making every conservation effort critical for the reef's survival.
+    """)
 
 st.divider()
 
@@ -216,22 +225,23 @@ st.divider()
 
 st.markdown("## Tools and Tech Used")
 
-st.markdown("\n")
-st.markdown("\n")
+with st.container():
+    st.markdown("\n")
+    st.markdown("\n")
 
-col1, col2, col3, col4, col5 = st.columns(5)
+    col1, col2, col3, col4, col5 = st.columns(5)
 
-with col1:
-    st.image("utils/streamlit.png", width=100)
-    
-with col2:
-    st.image("utils/Q.jpeg", width=100)
-    
-with col3:
-    st.image("utils/chatgpt.png", width=100)
-    
-with col4:
-    st.image("utils/deepnote.png", width=100)
-    
-with col5:
-    st.image("utils/python.png", width=100)
+    with col1:
+        st.image("utils/streamlit.png", width=100)
+        
+    with col2:
+        st.image("utils/Q.jpeg", width=100)
+        
+    with col3:
+        st.image("utils/chatgpt.png", width=100)
+        
+    with col4:
+        st.image("utils/deepnote.png", width=100)
+        
+    with col5:
+        st.image("utils/python.png", width=100)

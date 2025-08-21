@@ -100,11 +100,19 @@ def apply_styling():
         color: {palette['off_white']} !important;
     }}
     
-    /* 7. Full width for visualizations */
-    .main .block-container {{
+    /* 7. Increased side margins */
+    .main .block-container,
+    .stApp > div:first-child > div:first-child > div:first-child,
+    section.main > div {{
         max-width: none !important;
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
+        padding-left: 3rem !important;
+        padding-right: 3rem !important;
+    }}
+    
+    /* Alternative approach for all content */
+    .stApp {{
+        padding-left: 3rem !important;
+        padding-right: 3rem !important;
     }}
     </style>
     """, unsafe_allow_html=True)
