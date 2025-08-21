@@ -117,7 +117,8 @@ with col2:
 
 st.info("📈 **Combined Power**: 29,205+ data records spanning 44 years from 12,266 sites across 83 countries")
 
-
+# Fix info box text visibility - black for both themes
+st.markdown('<style>.stAlert > div { color: black !important; }</style>', unsafe_allow_html=True)
 
 st.divider()
 

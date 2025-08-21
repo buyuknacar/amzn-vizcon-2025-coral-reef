@@ -11,7 +11,8 @@ palette = {
     "steel_blue": "#4682B4",     # A medium blue that bridges deep_blue and turquoise
     "cerulean": "#007BA7",       # A bright middle blue that complements coral_red
     "dusty_blue": "#6699CC",     # A muted blue that works with the overall scheme
-    "sky_blue": "#87CEEB"        # A light, airy blue that contrasts with deep_blue
+    "sky_blue": "#87CEEB",        # A light, airy blue that contrasts with deep_blue
+    "black": "#000000"           # A rich black for contrast and emphasis
 }
 
 
@@ -43,7 +44,7 @@ def apply_styling():
         text-align: center !important;
     }}
     h5, h6 {{
-        color: {palette['coral_red']} !important;
+        color: {palette['deep_blue']} !important;
         font-weight: 500;
         text-align: center !important;
     }}
