@@ -134,6 +134,8 @@ A timeline of bleaching events across global reef locations since 2000, highligh
 This visualization communicates the alarming trend — bleaching is no longer rare. It's happening more frequently and with greater intensity, linked to global temperature rise. This chart also highlights the geographic hotspots, such as the Caribbean, Great Barrier Reef, and Indo-Pacific. It underlines that bleaching is not an isolated issue — it's a global climate crisis.
 """)
 
+st.divider()
+
 # Viz 2
 st.markdown("## K Means Analysis")
 
@@ -148,6 +150,8 @@ Four key factors driving coral recovery: geographic location, temperature patter
 🔎 **Meaning:**
 Geographic location dominates recovery patterns, explaining why some reefs are more resilient. Depth offers refuge in deeper waters, while algal competition threatens weakened corals post-bleaching. These insights guide targeted conservation — protecting deeper areas, controlling algal growth, and maintaining water quality can significantly improve recovery success for the 25% of marine life dependent on reefs.
 """)
+
+st.divider()
 
 # Viz 3
 st.markdown("## Coral Bleaching and Environmental Correlation")
@@ -164,6 +168,8 @@ Correlation of bleaching with exposure levels, sea temperature, turbidity, and w
 Temperature rise is the strongest driver, but local conditions like water clarity and wind patterns amplify vulnerability — proving the need for both global and local action.
 """)
 
+st.divider()
+
 # Viz 4
 st.markdown("## Management Authority Effectiveness")
 
@@ -176,6 +182,8 @@ st.markdown("""
 
 🔎 **Meaning:** Localized management outperforms broad strategies because it addresses specific reef needs—controlling macroalgae, managing local stressors, and empowering communities. While global climate action remains crucial, these findings suggest that successful coral conservation depends on tailored, community-driven approaches that complement geographic and environmental factors.
 """)
+
+st.divider()
 
 # Viz 5
 st.markdown("## Great Barrier Reef Forecast")
