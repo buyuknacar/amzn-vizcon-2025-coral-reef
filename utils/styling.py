@@ -21,7 +21,7 @@ def apply_styling():
     <style>
     /* 1. Gradient powder blue background */
     .stApp {{
-        background: linear-gradient(160deg, {palette['powder_blue']} 0%, #87CEEB 100%);
+        background: linear-gradient(0deg, white 0%, #87CEEB 100%);
     }}
 
     /* 2. Body text */

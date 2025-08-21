@@ -12,7 +12,9 @@ apply_styling()
 
 
 # TITLE
-st.title("Coral Reefs Under Threat and Hope for Recovery")
+# st.title("Coral Reefs Under Threat and Hope for Recovery")
+
+st.title("From Bleaching to Balance: Coral Sustainability Matters")
 
 st.markdown("\n")
 
@@ -45,7 +47,7 @@ Coral bleaching occurs when corals become stressed by changes in their environme
 During bleaching, corals become transparent—revealing their white skeletons. While bleached corals are still alive, they are significantly weakened and more vulnerable to starvation, disease, and even death.
 """)
 
-st.warning(" **The Ripple Effect**: When reefs die, fish populations decline, marine food webs collapse, coastal communities lose tourism income, and natural storm protection weakens.")
+st.info(" **The Ripple Effect**: When reefs die, fish populations decline, marine food webs collapse, coastal communities lose tourism income, and natural storm protection weakens.")
 
 st.markdown("""
 ### Global Climate Events Timeline""")
@@ -77,7 +79,7 @@ To understand the global coral crisis, we analyze two comprehensive datasets tha
 col1, col2 = st.columns(2)
 
 with col1:
-    st.subheader("Coral Bleaching Dataset")
+    st.subheader("[Coral Bleaching Dataset](https://www.bco-dmo.org/dataset/773466)")
     st.markdown("""
     **Focus**: Bleaching events and environmental stressors
     
@@ -91,7 +93,7 @@ with col1:
     """)
     
 with col2:
-    st.subheader("Coral Recovery Dataset")
+    st.subheader("[Coral Recovery Dataset](https://www.bco-dmo.org/dataset/933334)")
     st.markdown("""
     **Focus**: Recovery patterns following disturbances
     
@@ -104,14 +106,9 @@ with col2:
     - Recovery rates and timelines
     """)
 
-st.success("📈 **Combined Power**: 29,205+ data records spanning 44 years from 12,266 sites across 83 countries")
+st.info("📈 **Combined Power**: 29,205+ data records spanning 44 years from 12,266 sites across 83 countries")
 
-st.markdown("""
-**Data Sources**: 
-- [Coral Recovery Database](https://www.bco-dmo.org/dataset/933334)
-            
-- [Coral Bleaching Database](https://www.bco-dmo.org/dataset/773466)
-""")
+
 
 st.divider()
 
@@ -194,3 +191,36 @@ This time series analysis shows the Great Barrier Reef's coral cover trajectory:
 
 st.info("💡 **Insight**: The forecast helps predict future coral health trends and informs conservation planning decisions.")
 
+st.divider()
+
+st.markdown("""
+## Conclusion
+
+As we analyze the patterns of recovery and decline in places like the Great Barrier Reef, we learn so much about the resilience of nature and our role in protecting it. Coral bleaching can't be stopped entirely, but we can reduce its impact by cutting emissions, limiting local stressors like pollution, and supporting reef restoration efforts. Protecting coral reefs also means reducing coastal runoff, establishing marine protected areas, and investing in research that helps corals adapt to rising temperatures. 
+
+While reefs have shown the ability to recover in the past, the combination of rising temperatures, pollution in the oceans, and more frequent extreme weather events is testing their ability to survive. Analyzing this data isn't just about documenting decline, it's about finding ways to protect and preserve these ecosystems for future generations.
+
+**A reef without color is a warning, not an ending**
+""")
+
+
+st.markdown("## Tools and Tech Used")
+
+st.markdown("\n")
+
+col1, col2, col3, col4, col5 = st.columns(5)
+
+with col1:
+    st.image("utils/streamlit.png", width=100)
+    
+with col2:
+    st.image("utils/Q.jpeg", width=100)
+    
+with col3:
+    st.image("utils/chatgpt.jpeg", width=100)
+    
+with col4:
+    st.image("utils/deepnote.png", width=100)
+    
+with col5:
+    st.image("utils/python.png", width=100)
