@@ -28,7 +28,7 @@ def apply_styling():
     /* 2. Body text */
     .stMarkdown p, .stMarkdown li {{
         color: {palette['deep_blue']} !important;
-        font-size: 20px !important;
+        font-size: 24px !important;
     }}
 
     /* 2. Header hierarchy */
@@ -37,16 +37,19 @@ def apply_styling():
         text-shadow: 1px 1px 2px rgba(0,0,0,0.25);
         letter-spacing: 0.5px;
         text-align: center !important;
+        font-size: 36px !important;
     }}
     h3, h4 {{
         color: {palette['deep_blue']} !important;
         font-weight: 600;
         text-align: center !important;
+        font-size: 30px !important;
     }}
     h5, h6 {{
         color: {palette['deep_blue']} !important;
         font-weight: 500;
         text-align: center !important;
+        font-size: 26px !important;
     }}
 
     /* 3. Links & buttons */

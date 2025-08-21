@@ -93,7 +93,10 @@ def create_bleaching_heatmap():
         )],
         plot_bgcolor='#F5FBFF',
         paper_bgcolor='#F5FBFF',
-        font=dict(color='black', size=16)
+        font=dict(color='black', size=16),
+        mapbox=dict(
+            bounds=dict(west=-180, east=180, south=-90, north=90)
+        )
     )
     return fig
 
@@ -556,7 +559,7 @@ def create_climate_timeline():
             ),
             text=[f"<b>{e['year']}</b><br>{e['event']}<br><i>{e['detail']}</i>"],
             textposition=text_pos,
-            textfont=dict(size=12),
+            textfont=dict(size=16),
             hoverinfo="text",
             hovertext=f"<b>Year:</b> {e['year']}<br><b>Event:</b> {e['event']}<br><b>Impact:</b> {e['detail']}",
             showlegend=False
