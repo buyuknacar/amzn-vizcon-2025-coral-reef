@@ -2,7 +2,7 @@
 import streamlit as st
 import plotly.express as p
 from utils.styling import apply_styling
-from utils.data_processing import create_bleaching_heatmap, create_kmeans_analysis, create_bleaching_dashboard, create_management_analysis, create_gbr_forecast, create_climate_timeline
+from utils.data_processing import create_bleaching_heatmap, create_kmeans_analysis, create_bleaching_dashboard, create_management_analysis, create_gbr_forecast, create_climate_timeline, create_protection_treemap
 
 # Configure page layout
 st.set_page_config(layout="wide")
@@ -17,9 +17,8 @@ with col2:
     # Main container for entire page
     with st.container():
         # TITLE
-        # st.title("Coral Reefs Under Threat and Hope for Recovery")
 
-        # st.title("From Bleaching to Balance: Coral Sustainability Matters")
+        st.markdown("\n")
 
         st.title("GUARDIANS OF THE SEA: CORAL REEFS")
 
@@ -249,20 +248,23 @@ with col2:
     As we analyze the patterns of recovery and decline in places like the Great Barrier Reef, we learn so much about the resilience of nature and our role in protecting it. Coral bleaching can't be stopped entirely, but we can reduce its impact by cutting emissions, limiting local stressors like pollution, and supporting reef restoration efforts. Protecting coral reefs also means reducing coastal runoff, establishing marine protected areas, and investing in research that helps corals adapt to rising temperatures. 
 
     While reefs have shown the ability to recover in the past, the combination of rising temperatures, pollution in the oceans, and more frequent extreme weather events is testing their ability to survive. Analyzing this data isn't just about documenting decline, it's about finding ways to protect and preserve these ecosystems for future generations.
-
-    🛡️ **How Can We Protect Coral Reefs?**
-
-    - **Tackle Climate Change** – Reduce carbon emissions to limit ocean warming and acidification.
-    - **Marine Protected Areas (MPAs)** – Establish and enforce zones where reefs are safe from overfishing and destructive practices.
-    - **Sustainable Fishing** – Use reef-friendly practices that protect breeding grounds and maintain balance in marine life.
-    - **Reduce Pollution** – Limit agricultural runoff, plastics, and chemicals that stress coral ecosystems.
-    - **Reef Restoration** – Support coral nurseries and transplantation projects that help damaged reefs regrow.
-    - **Community & Tourism Practices** – Encourage reef-safe tourism (no touching corals, reef-safe sunscreens, waste management).
-    - **Education & Awareness** – Empower local communities and global citizens to understand and protect reef ecosystems.
-                
-    ### A reef without color is a warning, not an ending!
-                
+                                
     """)
+
+    with st.container():
+        with st.spinner("Loading protection strategies..."):
+            fig = create_protection_treemap()
+            st.plotly_chart(fig)
+
+        st.markdown("""
+        📊 **What it shows:** Interactive treemap of coral reef protection strategies organized into global and local actions.
+
+        🔎 **Meaning:** Effective coral protection requires coordinated action at multiple levels - from global climate initiatives to local community management, with each strategy playing a vital role in reef conservation.
+        """)
+
+
+
+    st.markdown("### A reef without color is a warning, not an ending!")
 
     st.divider()
 

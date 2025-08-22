@@ -438,7 +438,7 @@ def create_management_analysis():
     ))
     
     fig.update_layout(
-        xaxis_title='Mean Percent Hard Coral Cover',
+        xaxis_title='Mean Recovery Percent',
         yaxis_title='Management Category',
         height=600,
         margin=dict(l=200),
@@ -651,3 +651,69 @@ def create_climate_timeline():
     return fig
 
 
+def create_protection_treemap():
+    """Create treemap visualization for coral reef protection strategies."""
+    labels = [
+        "How Can We Protect Coral Reefs?",
+        "Global Actions", "Local Actions",
+        "Tackle Climate Change", "Education & Awareness",
+        "Marine Protected Areas", "Sustainable Fishing", 
+        "Reduce Pollution", "Reef Restoration", 
+        "Community & Tourism Practices", "Water Quality Management"
+    ]
+
+    parents = [
+        "",  
+        "How Can We Protect Coral Reefs?", "How Can We Protect Coral Reefs?",
+        "Global Actions", "Global Actions",
+        "Local Actions", "Local Actions", "Local Actions", "Local Actions", "Local Actions", "Local Actions"
+    ]
+
+    impact = {
+        "Tackle Climate Change": "🌍 Reduce carbon emissions",
+        "Education & Awareness": "📚 Empower people to protect",
+        "Marine Protected Areas": "🛡️ Safe zones, prevent destruction",
+        "Sustainable Fishing": "🎣 Reef-friendly practices",
+        "Reduce Pollution": "🚯 Cut runoff, plastics, chemicals",
+        "Reef Restoration": "🌱 Coral nurseries & transplantation",
+        "Community & Tourism Practices": "👨 Reef-safe tourism",
+        "Water Quality Management":" 💧 Reduce water pollutants"
+    }
+
+    values = [0, 0, 0] + [1] * (len(labels) - 3)
+    hover_text = [impact.get(label, "") for label in labels]
+
+    # Custom color mapping
+    color_map = {
+        "Water Quality Management": "#4FC3F7",  # Blue
+        "Marine Protected Areas": "#A0A0A0"     # Gray
+    }
+    
+    fig = px.treemap(
+        names=labels,
+        parents=parents,
+        values=values,
+        color=labels,
+        color_discrete_sequence=px.colors.qualitative.Pastel,
+        color_discrete_map=color_map
+    )
+
+    fig.update_traces(
+        textinfo="text",
+        text=[f"<b>{label}</b>" if label in ["Global Actions", "Local Actions"] else f"<b>{label}</b><br>{impact.get(label, '')}" for label in labels],
+        textposition="middle center",
+        hovertemplate=None,
+        hoverinfo="skip"
+    )
+
+    fig.update_layout(
+        clickmode="none",
+        margin=dict(t=20, b=20, l=10, r=10),
+        plot_bgcolor='#F5FBFF',
+        paper_bgcolor='#F5FBFF',
+        font=dict(color='black')
+    )
+    
+    fig.update_traces(textfont_color='black', textfont_size=16)
+    
+    return fig
