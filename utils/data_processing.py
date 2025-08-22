@@ -478,7 +478,8 @@ def create_gbr_forecast():
         mode='lines+markers',
         name='Observed',
         line=dict(color='#4FC3F7', width=3),
-        marker=dict(size=8, color='#4FC3F7')
+        marker=dict(size=8, color='#4FC3F7'),
+        hovertemplate='<b>Observed</b><br>%{y:.2f}%<extra></extra>'
     ))
     
     # Add forecast data
@@ -488,7 +489,8 @@ def create_gbr_forecast():
         mode='lines+markers',
         name='Forecast',
         line=dict(color='#01579B', width=3),
-        marker=dict(size=8, color='#01579B')
+        marker=dict(size=8, color='#01579B'),
+        hovertemplate='<b>Forecast</b><br>%{y:.2f}%<extra></extra>'
     ))
     
     # Add confidence interval upper bound
