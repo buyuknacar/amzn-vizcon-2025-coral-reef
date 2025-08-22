@@ -86,14 +86,20 @@ def create_bleaching_heatmap():
     )
     
     fig.update_layout(
-        coloraxis_colorbar=dict(title="Percent Bleaching"),
+        coloraxis_colorbar=dict(
+            title=dict(text="Percent Bleaching", font=dict(color='black', size=16), side="top"),
+            tickfont=dict(color='black', size=14),
+            ypad=20
+        ),
         sliders=[dict(
-            currentvalue=dict(prefix="Year: "),
+            currentvalue=dict(prefix="Year: ", font=dict(size=18)),
+            font=dict(size=16),
             steps=[dict(label=str(year), method="animate", args=[[str(year)]]) for year in sorted(bleaching_filtered['date_year'].unique())]
         )],
         plot_bgcolor='#F5FBFF',
         paper_bgcolor='#F5FBFF',
         font=dict(color='black', size=16),
+        hoverlabel=dict(font_size=16),
         mapbox=dict(
             bounds=dict(west=-180, east=180, south=-90, north=90)
         )
@@ -124,7 +130,8 @@ def create_kmeans_analysis():
         showlegend=False,
         plot_bgcolor='#F5FBFF',
         paper_bgcolor='#F5FBFF',
-        font=dict(color='black', size=14)
+        font=dict(color='black', size=14),
+        hoverlabel=dict(font_size=16)
     )
     
     return fig
@@ -289,6 +296,7 @@ def create_bleaching_dashboard():
         height=1300, width=1200,
         showlegend=False,
         plot_bgcolor='white', paper_bgcolor='white',
+        hoverlabel=dict(font_size=16),
         updatemenus=[dict(
             buttons=buttons, direction="down", showactive=True,
             x=0.5, xanchor="center", y=1.05, yanchor="middle",
@@ -411,7 +419,8 @@ def create_management_analysis():
         margin=dict(l=200),
         plot_bgcolor='#F5FBFF',
         paper_bgcolor='#F5FBFF',
-        font=dict(color='black')
+        font=dict(color='black'),
+        hoverlabel=dict(font_size=16)
     )
     
     fig.update_xaxes(title_font=dict(size=16, color='black'), tickfont=dict(size=14, color='black'))
@@ -489,6 +498,7 @@ def create_gbr_forecast():
         plot_bgcolor='#F5FBFF',
         paper_bgcolor='#F5FBFF',
         font=dict(color='black'),
+        hoverlabel=dict(font_size=16),
         legend=dict(
             orientation="h",
             yanchor="bottom",
@@ -559,7 +569,7 @@ def create_climate_timeline():
             ),
             text=[f"<b>{e['year']}</b><br>{e['event']}<br><i>{e['detail']}</i>"],
             textposition=text_pos,
-            textfont=dict(size=16),
+            textfont=dict(size=18),
             hoverinfo="text",
             hovertext=f"<b>Year:</b> {e['year']}<br><b>Event:</b> {e['event']}<br><b>Impact:</b> {e['detail']}",
             showlegend=False
@@ -595,6 +605,7 @@ def create_climate_timeline():
         plot_bgcolor='#F5FBFF',
         paper_bgcolor='#F5FBFF',
         font=dict(color='black'),
+        hoverlabel=dict(font_size=16),
         shapes=[
             dict(
                 type="line",
