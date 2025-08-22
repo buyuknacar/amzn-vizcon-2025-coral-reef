@@ -509,7 +509,10 @@ def create_gbr_forecast():
             y=1.02,
             xanchor="center",
             x=0.5,
-            font=dict(size=18)
+            font=dict(size=18, color='black'),
+            bgcolor='rgba(255,255,255,0.8)',
+            bordercolor='#F5FBFF',
+            borderwidth=0.1
         )
     )
     
