@@ -323,8 +323,8 @@ def create_bleaching_dashboard():
         updatemenus=[dict(
             buttons=buttons, direction="down", showactive=True,
             x=0.5, xanchor="center", y=1.05, yanchor="middle",
-            bgcolor='#003f5c', font=dict(size=12, color='white'),
-            bordercolor='#003f5c'
+            bgcolor='#F5F5F5', font=dict(size=12, color='black'),
+            bordercolor='#CCCCCC'
         )]
     )
     
