@@ -89,7 +89,11 @@ def create_bleaching_heatmap():
         coloraxis_colorbar=dict(
             title=dict(text="Percent Bleaching", font=dict(color='black', size=16), side="top"),
             tickfont=dict(color='black', size=14),
-            ypad=20
+            orientation="h",
+            x=0.5,
+            xanchor="center",
+            y=1.02,
+            yanchor="bottom"
         ),
         sliders=[dict(
             currentvalue=dict(prefix="Year: ", font=dict(size=18)),
