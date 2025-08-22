@@ -32,7 +32,14 @@ def apply_styling():
     }}
 
     /* 2. Header hierarchy */
-    h1, h2 {{
+    h1 {{
+        color: {palette['deep_blue']} !important;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.25);
+        letter-spacing: 0.5px;
+        text-align: center !important;
+        font-size: 52px !important;
+    }}
+    h2 {{
         color: {palette['deep_blue']} !important;
         text-shadow: 1px 1px 2px rgba(0,0,0,0.25);
         letter-spacing: 0.5px;
