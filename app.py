@@ -284,7 +284,7 @@ with col2:
             st.image("utils/Q.jpeg", width=100)
             
         with col3:
-            st.image("utils/chatgpt.png", width=100)
+            st.image("utils/git.png", width=100)
             
         with col4:
             st.image("utils/deepnote.png", width=100)
