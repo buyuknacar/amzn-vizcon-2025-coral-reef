@@ -186,7 +186,7 @@ def create_bleaching_dashboard():
     
     # Make subplot titles black and larger
     for annotation in fig['layout']['annotations']:
-        annotation['font'] = dict(color='black', size=18)
+        annotation['font'] = dict(color='black', size=20)
     
     # Top 15 countries
     country_bleaching = (df.groupby('country_name')['percent_bleaching']
@@ -254,6 +254,7 @@ def create_bleaching_dashboard():
     ), row=1, col=1)
     
     global_exposure = df.groupby('exposure')['percent_bleaching'].mean().reset_index()
+    global_exposure['exposure'] = global_exposure['exposure'].replace('Sometimes', 'Hybrid')
     fig.add_trace(go.Bar(
         x=global_exposure['exposure'], y=global_exposure['percent_bleaching'],
         name='Global Exposure', marker_color=CHART_COLORS['default'],

@@ -74,11 +74,9 @@ with col2:
             st.plotly_chart(fig)
 
         st.markdown("""
-        📊 **What it shows:**
-        An annotated timeline of global climate events that affected coral bleaching
-
-        🔎 **Meaning:**
-        By overlaying real-world events, this chart connects the data to human and ecological consequences
+        📊 **What it shows:** An annotated timeline of major global climate events and stressors that have impacted coral reefs, highlighting periods of widespread bleaching and ecological stress.
+                    
+        🔎 **Meaning:** By overlaying real-world events on the timeline, this chart connects the data directly to human and ecological consequences, showing how global climate events have influenced coral reef health over time.
         """)
 
 
@@ -236,7 +234,7 @@ with col2:
             st.plotly_chart(fig)
 
         st.markdown("""
-        📊 **What it shows:** Historical coral cover (1990-2020) peaked at 35% in the mid-1990s, declined to 20-25% after 2010, with projections showing further decline to 15% by 2030.
+        📊 **What it shows:** Historical coral cover (1992-2020) peaked at 35% in the late 1990s, declined to 20-25% after 2010, with projections showing further decline to 15% by 2030.
 
         🔎 **Meaning:** The widening confidence interval reflects increasing uncertainty as cumulative bleaching events reduce recovery windows. While the downward trend appears inevitable under current climate trajectories, varying management success rates suggest targeted interventions could moderate this decline, making every conservation effort critical for the reef's survival.
         """)
