@@ -183,9 +183,9 @@ def create_bleaching_dashboard():
         horizontal_spacing=0.15
     )
     
-    # Make subplot titles black
+    # Make subplot titles black and larger
     for annotation in fig['layout']['annotations']:
-        annotation['font'] = dict(color='black', size=14)
+        annotation['font'] = dict(color='black', size=18)
     
     # Top 15 countries
     country_bleaching = (df.groupby('country_name')['percent_bleaching']
@@ -309,19 +309,19 @@ def create_bleaching_dashboard():
         )]
     )
     
-    # Update axes with black labels
-    fig.update_yaxes(title_text="<b>Bleaching Percentage (%)</b>", title_font=dict(color='black'), tickfont=dict(color='black'), row=1, col=1)
-    fig.update_xaxes(title_text="<b>Year</b>", title_font=dict(color='black'), tickfont=dict(color='black'), row=1, col=1)
-    fig.update_xaxes(title_text="<b>Exposure Level</b>", title_font=dict(color='black'), tickfont=dict(color='black'), row=1, col=2)
-    fig.update_yaxes(title_text="<b>Average Bleaching (%)</b>", title_font=dict(color='black'), tickfont=dict(color='black'), row=1, col=2)
-    fig.update_xaxes(title_text="<b>Country</b>", title_font=dict(color='black'), tickfont=dict(color='black'), tickangle=45, row=2, col=1)
-    fig.update_yaxes(title_text="<b>Average Bleaching (%)</b>", title_font=dict(color='black'), tickfont=dict(color='black'), row=2, col=1)
-    fig.update_xaxes(title_text="<b>Year</b>", title_font=dict(color='black'), tickfont=dict(color='black'), row=2, col=2)
-    fig.update_yaxes(title_text="<b>Temperature (K)</b>", title_font=dict(color='black'), tickfont=dict(color='black'), row=2, col=2)
-    fig.update_xaxes(title_text="<b>Year</b>", title_font=dict(color='black'), tickfont=dict(color='black'), row=3, col=1)
-    fig.update_yaxes(title_text="<b>Turbidity Level</b>", title_font=dict(color='black'), tickfont=dict(color='black'), row=3, col=1)
-    fig.update_xaxes(title_text="<b>Year</b>", title_font=dict(color='black'), tickfont=dict(color='black'), row=3, col=2)
-    fig.update_yaxes(title_text="<b>Wind Speed (m/s)</b>", title_font=dict(color='black'), tickfont=dict(color='black'), row=3, col=2)
+    # Update axes with black labels and larger fonts
+    fig.update_yaxes(title_text="<b>Bleaching Percentage (%)</b>", title_font=dict(color='black', size=16), tickfont=dict(color='black', size=14), row=1, col=1)
+    fig.update_xaxes(title_text="<b>Year</b>", title_font=dict(color='black', size=16), tickfont=dict(color='black', size=14), row=1, col=1)
+    fig.update_xaxes(title_text="<b>Exposure Level</b>", title_font=dict(color='black', size=16), tickfont=dict(color='black', size=14), row=1, col=2)
+    fig.update_yaxes(title_text="<b>Average Bleaching (%)</b>", title_font=dict(color='black', size=16), tickfont=dict(color='black', size=14), row=1, col=2)
+    fig.update_xaxes(title_text="<b>Country</b>", title_font=dict(color='black', size=16), tickfont=dict(color='black', size=14), tickangle=45, row=2, col=1)
+    fig.update_yaxes(title_text="<b>Average Bleaching (%)</b>", title_font=dict(color='black', size=16), tickfont=dict(color='black', size=14), row=2, col=1)
+    fig.update_xaxes(title_text="<b>Year</b>", title_font=dict(color='black', size=16), tickfont=dict(color='black', size=14), row=2, col=2)
+    fig.update_yaxes(title_text="<b>Temperature (K)</b>", title_font=dict(color='black', size=16), tickfont=dict(color='black', size=14), row=2, col=2)
+    fig.update_xaxes(title_text="<b>Year</b>", title_font=dict(color='black', size=16), tickfont=dict(color='black', size=14), row=3, col=1)
+    fig.update_yaxes(title_text="<b>Turbidity Level</b>", title_font=dict(color='black', size=16), tickfont=dict(color='black', size=14), row=3, col=1)
+    fig.update_xaxes(title_text="<b>Year</b>", title_font=dict(color='black', size=16), tickfont=dict(color='black', size=14), row=3, col=2)
+    fig.update_yaxes(title_text="<b>Wind Speed (m/s)</b>", title_font=dict(color='black', size=16), tickfont=dict(color='black', size=14), row=3, col=2)
     
     return fig
 
