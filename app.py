@@ -226,6 +226,11 @@ with col2:
     # Viz 5
     st.markdown("## Great Barrier Reef Forecast")
 
+
+    st.markdown("""
+    The Great Barrier Reef, the world's largest reef system, has faced severe bleaching events. We forecasted recovery across the reef, highlighting areas with potential for rebound and the importance of targeted conservation and climate action.
+    """)
+
     st.markdown("\n")
 
     with st.container():
