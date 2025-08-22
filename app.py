@@ -175,11 +175,8 @@ with col2:
     st.markdown("\n")
 
     st.markdown("""
-    Coral reef recovery after bleaching is critical because it restores the health and stability of the ecosystem. When bleaching occurs, corals expel their symbiotic algae, lose color, and become weak, making them more vulnerable to disease and death. 
-                
-    Recovery allows corals to regain these algae, resume energy production, and rebuild their structures. This structural complexity is essential to maintain reef stability and prevent long-term degradation. Without recovery, bleached reefs often collapse into algae-dominated systems that cannot regenerate. 
-                
-    Successful recovery also strengthens resilience, as corals that bounce back may develop greater tolerance to rising ocean temperatures. Moreover, natural recovery provides a stronger foundation for restoration projects such as coral gardening and transplantation, making conservation strategies more effective. In this way, recovery after bleaching is not just about survival—it is about rebuilding strength and resilience for the future.
+    Coral reef recovery after bleaching is essential to restore ecosystem health and stability. Recovery allows corals to regain their symbiotic algae, rebuild structures, and strengthen resilience to rising temperatures. It also supports effective restoration efforts, ensuring reefs can sustain marine life and recover their vital ecological functions.
+
     """)
 
     st.divider()
