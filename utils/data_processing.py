@@ -116,7 +116,7 @@ def create_kmeans_analysis():
     # Donut chart for factor influence
     features = ['Geographic Location', 'Macroalgal Competition', 'Temperature Factors', 
                'Depth', 'Other Environmental Factors']
-    sizes = [27.5, 27, 20, 17, 7]
+    sizes = [27.9, 27.4, 20.3, 17.3, 7.11]
     colors = ['#FF9999', '#66B2FF', '#99FF99', '#FFCC99', '#FF99CC']
     
     fig = go.Figure(data=[go.Pie(
@@ -126,7 +126,8 @@ def create_kmeans_analysis():
         marker_colors=colors,
         textinfo='label+percent',
         textposition='outside',
-        textfont=dict(size=16)
+        textfont=dict(size=16),
+        hoverinfo='none'
     )])
     
     fig.update_layout(
