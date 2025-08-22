@@ -50,7 +50,7 @@ with col2:
     st.markdown("""
     ## The Bleaching Crisis
 
-    However, coral reefs around the world have been significantly affected by the rise of global temperatures, changes in the climate, and general pollution of the environment and our oceans—undergoing a transformation known as **coral bleaching**.
+    Coral reefs around the world have been significantly affected by the rise of global temperatures, changes in the climate, and general pollution of the environment and our oceans—undergoing a transformation known as **coral bleaching**.
 
     Coral bleaching occurs when corals become stressed by changes in their environment, most commonly:
     -  **Elevated sea temperatures**
@@ -245,11 +245,11 @@ with col2:
     st.markdown("""
     ## Conclusion
 
-    As we analyze the patterns of recovery and decline in places like the Great Barrier Reef, we learn so much about the resilience of nature and our role in protecting it. Coral bleaching can't be stopped entirely, but we can reduce its impact by cutting emissions, limiting local stressors like pollution, and supporting reef restoration efforts. Protecting coral reefs also means reducing coastal runoff, establishing marine protected areas, and investing in research that helps corals adapt to rising temperatures. 
-
-    While reefs have shown the ability to recover in the past, the combination of rising temperatures, pollution in the oceans, and more frequent extreme weather events is testing their ability to survive. Analyzing this data isn't just about documenting decline, it's about finding ways to protect and preserve these ecosystems for future generations.
+    As we analyze the patterns of recovery and decline in places like the Great Barrier Reef, we learn so much about the resilience of nature and our role in protecting it. While reefs have shown the ability to recover in the past, the combination of rising temperatures, pollution in the oceans, and more frequent extreme weather events is testing their ability to survive. Analyzing this data isn't just about documenting decline, it's about finding ways to protect and preserve these ecosystems for future generations.
                                 
     """)
+
+    st.markdown("\n")
 
     with st.container():
         with st.spinner("Loading protection strategies..."):
@@ -261,6 +261,7 @@ with col2:
 
         🔎 **Meaning:** Effective coral protection requires coordinated action at multiple levels - from global climate initiatives to local community management, with each strategy playing a vital role in reef conservation.
         """)
+        
 
 
 

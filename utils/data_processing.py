@@ -600,8 +600,7 @@ def create_climate_timeline():
             text=[f"<b>{e['year']}</b><br>{e['event']}<br><i>{e['detail']}</i>"],
             textposition=text_pos,
             textfont=dict(size=18),
-            hoverinfo="text",
-            hovertext=f"<b>Year:</b> {e['year']}<br><b>Event:</b> {e['event']}<br><b>Impact:</b> {e['detail']}",
+            hoverinfo="skip",
             showlegend=False
         ))
 
