@@ -682,10 +682,19 @@ def create_protection_treemap():
     values = [0, 0, 0] + [1] * (len(labels) - 3)
     hover_text = [impact.get(label, "") for label in labels]
 
-    # Custom color mapping
+    # Pastel color mapping using specified palette
     color_map = {
-        "Water Quality Management": "#4FC3F7",  # Blue
-        "Marine Protected Areas": "#A0A0A0"     # Gray
+        "How Can We Protect Coral Reefs?": "#B3B3B3",
+        "Global Actions": "#66C5CC",
+        "Local Actions": "#F6CF71",
+        "Tackle Climate Change": "#F89C74",
+        "Education & Awareness": "#DCB0F2",
+        "Marine Protected Areas": "#87C55F",
+        "Sustainable Fishing": "#9EB9F3",
+        "Reduce Pollution": "#FE88B1",
+        "Reef Restoration": "#C9DB74",
+        "Community & Tourism Practices": "#8BE0A4",
+        "Water Quality Management": "#B497E7"
     }
     
     fig = px.treemap(
